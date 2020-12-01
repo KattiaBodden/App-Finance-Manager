@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#31898F',
         borderBottomWidth: 2,
         width: width * 0.9,
-        textAlign: "center"
+        alignSelf: "center"
     },
 
     texto: {
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         height: height * 0.75,
         width: width * 0.9,
-        alignContent:"center",
-        marginLeft: 17,
+        alignSelf: "center",
         borderRadius: 8,
+        marginTop: 8
     },
 
     icono: {
