@@ -18,7 +18,8 @@ export default function App() {
       <Stack.Screen name="mainScreen" component={mainScreen} />
       <Stack.Screen name="movimientos" component={movimientos} />
       <Stack.Screen name="agregarMovimientos" component={agregarMovimientos} />
-
+      <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
+      <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
     </Stack.Navigator>
       
   </NavigationContainer>  
