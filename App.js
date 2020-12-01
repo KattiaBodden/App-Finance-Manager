@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/mainScreen"
+import movimientos from "./src/movimientos"
+import agregarMovimientos from "./src/AgregarMovimientos"
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -12,6 +14,9 @@ export default function App() {
 
     <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
       <Stack.Screen name="mainScreen" component={mainScreen} />
+      <Stack.Screen name="movimientos" component={movimientos} />
+      <Stack.Screen name="agregarMovimientos" component={agregarMovimientos} />
+
     </Stack.Navigator>
       
   </NavigationContainer>  

@@ -3,6 +3,7 @@ import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button} fro
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons'; 
+import movimientos from "./movimientos" 
 
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
@@ -32,7 +33,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="money-off" size={24} color="black" />
                             <Text style={styles.textoBotones}>Gastos</Text>
                         </Button> 
-                        <Button  style={styles.botonMovimientos}>
+                        <Button  style={styles.botonMovimientos} onPress={() => navigation.navigate("movimientos")}>
                           <MaterialIcons name="compare-arrows" size={24} color="black" />
                             <Text style={styles.textoBotones}>Movimientos</Text>
                         </Button>
