@@ -2,6 +2,8 @@ import React, { Component, useEffect, useState } from "react";
 import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button} from "native-base";
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import movimientos from "./movimientos" 
 
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
@@ -22,8 +24,24 @@ const mainScreen = ({ navigation }) => {
                     start={{ x: 1, y: 1 }}
                     end={{ x: 1, y: 0 }}> 
                     <View >
-                        <Text style={styles.texto}>pantalla principal </Text> 
-                        
+                        <Text style={styles.textoTitulo}>Bienvenido! </Text> 
+                        <Button  style={styles.botonIngresos}> 
+                          <MaterialIcons name="attach-money" size={24} color="black" />
+                            <Text style={styles.textoBotones}>Ingresos</Text>
+                        </Button> 
+                        <Button  style={styles.botonGastos}>
+                          <MaterialIcons name="money-off" size={24} color="black" />
+                            <Text style={styles.textoBotones}>Gastos</Text>
+                        </Button> 
+                        <Button  style={styles.botonMovimientos} onPress={() => navigation.navigate("movimientos")}>
+                          <MaterialIcons name="compare-arrows" size={24} color="black" />
+                            <Text style={styles.textoBotones}>Movimientos</Text>
+                        </Button>
+                        <Button  style={styles.botonBalance}>
+                          <MaterialIcons name="account-balance" size={24} color="black" />
+                            <Text style={styles.textoBotones}>balance</Text>
+                        </Button> 
+
                 </View>
 
             </LinearGradient>
@@ -46,6 +64,65 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#3CCCD6',
       },
+
+ 
+    botonIngresos:{
+      width:190,
+      height:60,
+      backgroundColor:"#ffffff",
+      marginTop:50,
+      alignSelf:"center",
+      borderRadius:26,
+      alignContent:"center",
+      justifyContent:"center",
+
+  },
+  botonGastos:{
+    width:190,
+    height:60,
+    backgroundColor:"#ffffff",
+    marginTop:50,
+    alignSelf:"center",
+    borderRadius:26,
+    alignContent:"center",
+    justifyContent:"center",
+
+},
+botonMovimientos:{
+  width:190,
+  height:60,
+  backgroundColor:"#ffffff",
+  marginTop:50,
+  alignSelf:"center",
+  borderRadius:26,
+  alignContent:"center",
+  justifyContent:"center",
+
+}  ,
+botonBalance:{
+  width:190,
+  height:60,
+  backgroundColor:"#ffffff",
+  marginTop:50,
+  alignSelf:"center",
+  borderRadius:26, 
+  alignContent:"center",
+  justifyContent:"center",
+
+},
+textoBotones:{
+  fontWeight:"bold",
+  fontSize:20,
+  justifyContent:"center",
+  textAlign:"center",
+},      
+textoTitulo:{
+  marginTop:20,
+  color:"#FFFFFF",
+  fontSize:40,
+  fontWeight:"bold",
+  marginLeft:40,
+}
  });
 
 export default mainScreen;
