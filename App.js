@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/mainScreen"
+import pantallaIngresos from "./src/pantallaIngresos"
+import pantallaGastos from "./src/pantallaGastos"
 const Stack = createStackNavigator();
 
 export default function App() {
