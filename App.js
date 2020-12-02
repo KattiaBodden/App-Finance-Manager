@@ -6,12 +6,25 @@ import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/mainScreen"
 import movimientos from "./src/movimientos"
 import agregarMovimientos from "./src/AgregarMovimientos"
+import * as SplashScreen from "expo-splash-screen";
+import useDatabase from "./src/hooks/useDataBase";
+import { MovesContextProvider } from "./src/context/movimientosContext";
+
 const Stack = createStackNavigator();
 
 export default function App() {
+
+   // Prevenir que la pantalla de splash se oculte
+   SplashScreen.preventAutoHideAsync();
+
+   const isLoadingComplete = useDatabase();
+ 
+   // Ocutar la pantalla de splash
+   if (isLoadingComplete) SplashScreen.hideAsync();
+
+   //falta poner la etiqueta movesContextProvider , revisar github
   return (
     <NavigationContainer>
-
     <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
       <Stack.Screen name="mainScreen" component={mainScreen} />
       <Stack.Screen name="movimientos" component={movimientos} />

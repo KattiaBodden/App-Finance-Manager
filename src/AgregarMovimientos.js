@@ -15,7 +15,7 @@ const moves = [
     {movimiento: "salida"},
 ];
 
-export default class movimientos extends Component  { 
+export default class agragarMovimientos extends Component  { 
     constructor(props) {
         super(props);
         this.state = {
