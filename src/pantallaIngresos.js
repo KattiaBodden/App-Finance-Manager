@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
 
     icono: {
-        color: "white",
+        color: "black",
         fontSize: 35,
         paddingBottom:35
     },

@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -30,16 +30,20 @@ const movimientos = ({ navigation }) => {
                     end={{ x: 1, y: 0 }}> 
                     <View >
                         <Text style={styles.textoTitulo}>Movimientos </Text> 
-                      
+                        <View style={styles.divisor}/>
+
                                 <View>
                                     <Text>{moves.movimiento}</Text>
+                                    <Card style={styles.lista}>
+                                     <Text style={styles.texto} >Aqui va el listado de movimientos</Text>
+                                    </Card>
                                 </View>
                               
                         <TouchableOpacity style={styles.botonAgregar} onPress={() => navigation.navigate("agregarMovimientos")} >
-                            <FontAwesome5 name="plus" size={40} color="white" />
+                            <FontAwesome5 name="plus" size={40} color="black" />
                         </TouchableOpacity>
                     </View>
-
+                   
             </LinearGradient>
 
          </Container>
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
       width:70,
       height:60,
       alignSelf:"flex-end",
-      marginTop:560,
+      marginTop:5,
   },
   
 textoBotones:{
@@ -76,12 +80,27 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:10,
-  color:"#FFFFFF",
-  fontSize:40,
-  fontWeight:"bold",
-  marginLeft:73,
-}
+ 
+        fontSize: 33,
+        textAlign:"center",
+        marginTop: 12,
+        color: '#31898F',
+    
+},
+divisor:{
+    borderBottomColor: '#31898F',
+    borderBottomWidth: 2,
+    width: width * 0.9,
+    alignSelf: "center"
+},
+lista:{
+    backgroundColor:"white",
+    height: height * 0.75,
+    width: width * 0.9,
+    alignSelf:"center",
+    borderRadius: 8,
+    marginTop: 8
+},
  });
 
  export default movimientos;
