@@ -25,11 +25,11 @@ const mainScreen = ({ navigation }) => {
                     end={{ x: 1, y: 0 }}> 
                     <View >
                         <Text style={styles.textoTitulo}>Bienvenido! </Text> 
-                        <Button  style={styles.botonIngresos}> 
+                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>
                         </Button> 
-                        <Button  style={styles.botonGastos}>
+                        <Button  style={styles.botonGastos} onPress={() => navigation.navigate("pantallaGastos")}>
                           <MaterialIcons name="money-off" size={24} color="black" />
                             <Text style={styles.textoBotones}>Gastos</Text>
                         </Button> 
@@ -39,7 +39,7 @@ const mainScreen = ({ navigation }) => {
                         </Button>
                         <Button  style={styles.botonBalance}>
                           <MaterialIcons name="account-balance" size={24} color="black" />
-                            <Text style={styles.textoBotones}>balance</Text>
+                            <Text style={styles.textoBotones}>Balance</Text>
                         </Button> 
 
                 </View>

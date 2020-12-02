@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/mainScreen"
+import pantallaIngresos from "./src/pantallaIngresos"
+import pantallaGastos from "./src/pantallaGastos"
 import movimientos from "./src/movimientos"
 import agregarMovimientos from "./src/AgregarMovimientos"
 import * as SplashScreen from "expo-splash-screen";
@@ -29,7 +31,8 @@ export default function App() {
       <Stack.Screen name="mainScreen" component={mainScreen} />
       <Stack.Screen name="movimientos" component={movimientos} />
       <Stack.Screen name="agregarMovimientos" component={agregarMovimientos} />
-
+      <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
+      <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
     </Stack.Navigator>
       
   </NavigationContainer>  
