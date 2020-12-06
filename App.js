@@ -8,6 +8,7 @@ import pantallaIngresos from "./src/pantallaIngresos"
 import pantallaGastos from "./src/pantallaGastos"
 import movimientos from "./src/movimientos"
 import agregarMovimientos from "./src/AgregarMovimientos"
+import balance from "./src/balance"
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDataBase";
 import { MovesContextProvider } from "./src/context/movimientosContext";
@@ -33,6 +34,7 @@ export default function App() {
       <Stack.Screen name="agregarMovimientos" component={agregarMovimientos} />
       <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
       <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
+      <Stack.Screen name="balance" component={balance} />
     </Stack.Navigator>
       
   </NavigationContainer>  

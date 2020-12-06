@@ -37,7 +37,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="compare-arrows" size={24} color="black" />
                             <Text style={styles.textoBotones}>Movimientos</Text>
                         </Button>
-                        <Button  style={styles.botonBalance}>
+                        <Button  style={styles.botonBalance} onPress={() => navigation.navigate("balance")}>
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>
                         </Button> 
