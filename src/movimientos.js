@@ -4,7 +4,6 @@ import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import agregarMovimiento from "../src/AgregarMovimientos"
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,7 +38,7 @@ const movimientos = ({ navigation }) => {
                                     </Card>
                                 </View>
                               
-                        <TouchableOpacity style={styles.botonAgregar} onPress={() => navigation.navigate("agregarMovimientos")} >
+                        <TouchableOpacity style={styles.botonAgregar}  >
                             <FontAwesome5 name="plus" size={40} color="black" />
                         </TouchableOpacity>
                     </View>
