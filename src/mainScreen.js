@@ -24,7 +24,7 @@ const mainScreen = ({ navigation }) => {
                     start={{ x: 1, y: 1 }}
                     end={{ x: 1, y: 0 }}> 
                     <View >
-                        <Text style={styles.textoTitulo}>Bienvenido! </Text> 
+                        <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
                             <Text style={styles.textoBotones}>Ingresos</Text>

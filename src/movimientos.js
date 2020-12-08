@@ -83,11 +83,11 @@ textoTitulo:{
         fontSize: 33,
         textAlign:"center",
         marginTop: 12,
-        color: '#31898F',
+        color: '#236266',
     
 },
 divisor:{
-    borderBottomColor: '#31898F',
+    borderBottomColor: '#236266',
     borderBottomWidth: 2,
     width: width * 0.9,
     alignSelf: "center"

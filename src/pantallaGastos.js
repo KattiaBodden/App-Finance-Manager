@@ -18,10 +18,10 @@ const pantallaGastos= ({ navigation }) => {
                  
                 </Header>
                 <LinearGradient 
-                   colors={[colors= '#CFF2F6', '#31898F']} 
+                   colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
-                   start={{ x: 1, y: 0 }}
-                   end={{ x: 0, y: 1 }}> 
+                   start={{ x: 1, y: 1 }}
+                   end={{ x: 1, y: 0 }}> 
                    <View >
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
         fontSize: 33,
         textAlign:"center",
         marginTop: 12,
-        color: '#31898F',
+        color: '#236266',
     },
 
     divisor:{
-        borderBottomColor: '#31898F',
+        borderBottomColor: '#236266',
         borderBottomWidth: 2,
         width: width * 0.9,
         alignSelf: "center"
