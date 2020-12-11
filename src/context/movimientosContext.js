@@ -18,8 +18,8 @@ export const GastosContextProvider = (props) => {
     return database.getGastos(setGastos);
   };
 
-  const agregarGasto = (descripcion,monto,fecha) => {
-    return database.insertGastos(descripcion,monto,fecha, refreshGastos);
+  const agregarGasto = (descripcion,monto) => {
+    return database.insertGastos(descripcion,monto, refreshGastos);
   };
 
   // Crear el objeto de contexto

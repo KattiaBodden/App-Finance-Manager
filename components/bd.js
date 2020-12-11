@@ -47,7 +47,7 @@ const getCategorias = (setCategoriasFunc) => {
 const insertGastos = (descripcion,monto,fecha,successFunc) => {
   db.transaction(
     (tx) => {
-      tx.executeSql("insert into gastos (descripcion,monto,fecha) values (?,?,?)", [descripcion,monto,fecha]);
+      tx.executeSql("insert into gastos (descripcion,monto) values (?,?)", [descripcion,monto]);
     },
     (_t, error) => {
       console.log("Error al insertar gastos");
@@ -105,8 +105,13 @@ const setupDatabaseTableAsync = async () => {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "create table if not exists gastos (id integer primary key autoincrement, descripcion text not null ,monto numeric ,fecha text not null  )"
-        );
+          `create table if not exists gastos (id integer primary key autoincrement,
+                                             descripcion text not null ,
+                                             monto real not null ,
+                                             fecha DATE DEFAULT (dateTime('now','localtime')),
+                                             idCategoria integer ,
+                                              foreign key (idCategoria) references categorias(id)
+                                             );` );
       },
       (_t, error) => {
         console.log("Error al momento de crear la tabla");
@@ -115,6 +120,8 @@ const setupDatabaseTableAsync = async () => {
       },
       (_t, success) => {
         resolve(success);
+        console.log("Tabla Creada");
+
       }
     );
   });
@@ -171,8 +178,15 @@ const setupCategoriasAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("insert into categorias (categoria) values (?)", [
-          "Sin Categoria"
+        tx.executeSql("insert into categorias (categoria) values (?),(?),(?),(?),(?),(?),(?),(?)", [
+          ("Alimentacion"),
+          ("Vivienda"),
+          ("Transporte"),
+          ("Salud"),
+          ("Entretenimiento"),
+          ("Vestuario"),
+          ("Educacion"),
+          ("Otros gastos")
          
         ]);
       },

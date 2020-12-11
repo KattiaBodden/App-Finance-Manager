@@ -28,7 +28,7 @@ import {ContextoCategorias} from "../src/context/categoriasContext"
 
          
           const handlerNewGasto = () => {
-          agregarGasto(descripcion,monto, fecha,refreshGastos);
+          agregarGasto(descripcion,monto,refreshGastos);
             navigation.goBack();
           };
          
@@ -59,21 +59,7 @@ import {ContextoCategorias} from "../src/context/categoriasContext"
                                  value={monto}
                                  onChangeText={setMonto}/>
                             </Item>
-                            <Item>
-                              <Fontisto name = "date" size = {24} color = "black" />
-               
-                                <DatePicker
-                                  placeHolderText="Fecha"
-                                  label="Basic example"
-                                  value={fecha}
-                                  
-                                  onDateChange={ (date) => {
-                                    setFecha(date).toString();
-                                  } }
-                                  animateYearScrolling
-                                />
-
-                            </Item>
+                            
                             <Item>
                               <AntDesign name="select1" size={24} color="black" />            
                                 <Picker

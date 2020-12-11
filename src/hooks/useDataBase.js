@@ -3,7 +3,7 @@ import { database } from "../../components/bd";
 
 const useDatabase = () => {
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
-
+//
   const loadDatabase = async () => {
     try {
       //await database.dropDatabaseTableAsync();
@@ -11,7 +11,7 @@ const useDatabase = () => {
       //await database.setupDatabaseTableAsync();
       //await database.categoriesTableAsync();
       //await database.setupGastosAsync();
-      //await database.setupCategoriasAsync();
+      await database.setupCategoriasAsync();
       // Finaliza la carga de la DB
 
      setIsLoadingComplete(true);

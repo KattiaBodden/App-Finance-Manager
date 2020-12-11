@@ -10,10 +10,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
 const state =[{fecha: new Date("2020","06","22")}];
-const moves = [
-    {movimiento: "entrada"},
-    {movimiento: "salida"},
-];
 
 const movimientos = ({ navigation }) => { 
   

@@ -1,14 +1,19 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
+import { DateTime } from "luxon";
+import { format} from 'date-fns';
+
 const { width, height } = Dimensions.get("window");
 
 const pantallaGastos= ({ navigation }) => { 
+    var dateFormat = require("dateformat");
+
     const { gastos } = useContext(ContextoGastos);
     console.log(gastos);
 
@@ -32,7 +37,9 @@ const pantallaGastos= ({ navigation }) => {
                                 {gastos
                                     ? gastos.map((gasto) => (
                                         <ListItem key={gasto.id.toString()}>
-                                        <Text>{gasto.descripcion}</Text>
+                                            <Left><Text>{gasto.descripcion}</Text></Left> 
+                                            <Right><Text> {gasto.monto}</Text></Right>  
+ 
                                         </ListItem>
                                     ))
                                     : null}
