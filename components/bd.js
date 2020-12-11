@@ -1,38 +1,56 @@
 import React from "react";
 import * as SQLite from "expo-sqlite";
 
-// Crea y abre la base de datos
 const db = SQLite.openDatabase("financeManager.db");
 
 
-// Obtener los movimientos del usuario
-const getMoves = (setMovesFunc) => {
+// Obtener los gastos del usuario
+const getGastos = (setGastosFunc) => {
   db.transaction((tx) => {
     tx.executeSql(
-      "select * from movimientos",
+      "select * from gastos",
       [],
       (_, { rows: { _array } }) => {
-        setNotesFunc(_array);
+        setGastosFunc(_array);
       },
       (_t, error) => {
-        console.log("Error al momento de obtener los movimientos");
+        console.log("Error al momento de obtener los gastos");
         console.log(error);
       },
       (_t, _success) => {
-        console.log("Movimientos obtenidos");
+        console.log("Gastos obtenidos");
       }
     );
   });
 };
 
-// Insertar movimientos
-const insertMoves = (move, successFunc) => {
+// Obtener los categorias de gastos
+const getCategorias = (setCategoriasFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from categorias",
+      [],
+      (_, { rows: { _array } }) => {
+        setCategoriasFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener las categorias");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Categorias obtenidos");
+      }
+    );
+  });
+};
+// Insertar gastos
+const insertGastos = (descripcion,monto,fecha,successFunc) => {
   db.transaction(
     (tx) => {
-      tx.executeSql("insert into movimientos (move) values (?)", [move]);
+      tx.executeSql("insert into gastos (descripcion,monto) values (?,?)", [descripcion,monto]);
     },
     (_t, error) => {
-      console.log("Error al insertar movimiento");
+      console.log("Error al insertar gastos");
       console.log(error);
     },
     (_t, _success) => {
@@ -41,23 +59,45 @@ const insertMoves = (move, successFunc) => {
   );
 };
 
-// Borrar la base de datos
+
+// Borrar la tabla gastos
 const dropDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("drop table financeManager");
+        tx.executeSql("drop table gastos");
       },
-      (_, result) => {
-        resolve(result);
-      },
-      (_, error) => {
-        console.log("Error al eliminar la tabla de movimientos");
+      (_t, error) => {
+        console.log("Error al eliminar la tabla de gastos");
         reject(error);
+      },
+      (_t, result) => {
+        resolve(result);
       }
+      
     );
   });
 };
+
+// Borrar la tabla categorias
+const dropCategoriasTableAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("drop table categorias");
+      },
+      (_t, error) => {
+        console.log("Error al eliminar la tabla de gastos");
+        reject(error);
+      },
+      (_t, result) => {
+        resolve(result);
+      }
+      
+    );
+  });
+};
+
 
 // Creación de la tabla de movimientos
 const setupDatabaseTableAsync = async () => {
@@ -65,11 +105,63 @@ const setupDatabaseTableAsync = async () => {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "create table if not exists movimientos (id integer primary key not null, descripcion,fecha,idCategoria )"
+          `create table if not exists gastos (id integer primary key autoincrement,
+                                             descripcion text not null ,
+                                             monto real not null ,
+                                             fecha DATE DEFAULT (dateTime('now','localtime')),
+                                             idCategoria integer ,
+                                              foreign key (idCategoria) references categorias(id)
+                                             );` );
+      },
+      (_t, error) => {
+        console.log("Error al momento de crear la tabla");
+        console.log(error);
+        reject(error);
+      },
+      (_t, success) => {
+        resolve(success);
+        console.log("Tabla Creada");
+
+      }
+    );
+  });
+};
+
+//Creacion tabla categorias
+const categoriesTableAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql(
+          "create table if not exists categorias (id integer primary key autoincrement, categoria text not null)"
         );
       },
       (_t, error) => {
         console.log("Error al momento de crear la tabla");
+        console.log(error);
+        reject(error);
+      },
+      (_t, success) => {
+
+        resolve(success);
+        console.log("table creada con exito");
+
+      }
+    );
+  });
+};
+
+// Agrega una gasto por defecto
+const setupGastosAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("insert into gastos (descripcion) values (?)", [
+          "Primer gasto"
+        ]);
+      },
+      (_t, error) => {
+        console.log("Error al momento de insertar los valores por defecto");
         console.log(error);
         reject(error);
       },
@@ -80,9 +172,45 @@ const setupDatabaseTableAsync = async () => {
   });
 };
 
+
+//Insertar categorias de gasto
+const setupCategoriasAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("insert into categorias (categoria) values (?),(?),(?),(?),(?),(?),(?),(?)", [
+          ("Alimentacion"),
+          ("Vivienda"),
+          ("Transporte"),
+          ("Salud"),
+          ("Entretenimiento"),
+          ("Vestuario"),
+          ("Educacion"),
+          ("Otros gastos")
+         
+        ]);
+      },
+      (_t, error) => {
+        console.log("Error al momento de insertar las categorias");
+        console.log(error);
+        reject(error);
+      },
+      (_t, success) => {
+        console.log("categorias cargadas ");
+
+        resolve(success);
+      }
+    );
+  });
+};
 export const database = {
-  getMoves,
-  insertMoves,
+  getGastos,
+  getCategorias,
+  insertGastos,
   dropDatabaseTableAsync,
+  dropCategoriasTableAsync,
   setupDatabaseTableAsync,
+  categoriesTableAsync,
+  setupGastosAsync,
+  setupCategoriasAsync,
 };

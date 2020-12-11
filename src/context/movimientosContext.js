@@ -4,39 +4,34 @@ import React, { useEffect, createContext, useState } from "react";
 import { database } from "../../components/bd";
 
 // Crear el contexto de las notas
-export const MovesContext = createContext({});
+export const ContextoGastos = createContext({});
+export const GastosContextProvider = (props) => {
+ 
+  const { gastos: initialGastos, children } = props;
+  const [gastos, setGastos] = useState(initialGastos);
 
-export const MovesContextProvider = (props) => {
-  // Obtener los valores iniciales para el contexto
-  // se obtienen desde los props
-  const { moves: initialNotes, children } = props;
-
-  // Almacenar los valores en el estado
-  const [moves, setMoves] = useState(initialNotes);
-
-  // Cargar u obtener las notas
   useEffect(() => {
-    refreshMoves();
+    refreshGastos();
   }, []);
 
-  const refreshNotes = () => {
-    return database.getMoves(setMoves);
+  const refreshGastos = () => {
+    return database.getGastos(setGastos);
   };
 
-  const addNewMove = (moves) => {
-    return database.insertMoves(moves, refreshMoves);
+  const agregarGasto = (descripcion,monto) => {
+    return database.insertGastos(descripcion,monto, refreshGastos);
   };
 
   // Crear el objeto de contexto
-  const movesContext = {
-    moves,
-    addNewMove,
+  const contextoGastosObject = {
+    gastos,
+    agregarGasto,
   };
 
   // Pasar los valores al proveedor y retornarlo
   return (
-    <NotesContext.Provider value={movesContext}>
+    <ContextoGastos.Provider value={contextoGastosObject}>
       {children}
-    </NotesContext.Provider>
+    </ContextoGastos.Provider>
   );
 };

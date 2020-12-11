@@ -1,16 +1,22 @@
-import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
+import React, { Component, useEffect, useState ,useContext} from "react";
+import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
-
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
+import { ContextoGastos } from "../src/context/movimientosContext";
+import { DateTime } from "luxon";
+import { format} from 'date-fns';
+
 const { width, height } = Dimensions.get("window");
-const state =[{fecha: new Date("2020","06","22")}];
 
 const pantallaGastos= ({ navigation }) => { 
-  
+    var dateFormat = require("dateformat");
+
+    const { gastos } = useContext(ContextoGastos);
+    console.log(gastos);
+
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
@@ -27,15 +33,33 @@ const pantallaGastos= ({ navigation }) => {
                        
                        <Card style={styles.lista}>
                             <Text style={styles.texto} >Aqui va el listado de gastos</Text>
+                            <List>
+                                {gastos
+                                    ? gastos.map((gasto) => (
+                                        <ListItem key={gasto.id.toString()}>
+                                            <Left><Text>{gasto.descripcion}</Text></Left> 
+                                            <Right><Text> {gasto.monto}</Text></Right>  
+ 
+                                        </ListItem>
+                                    ))
+                                    : null}
+                                </List>
                         </Card>
-                        
-                      <Button style={styles.boton}>
-                        <Icon name="add" style={styles.icono}></Icon>
-                      </Button>
+                        <Fab
+                            active={true}
+                            position="bottomRight"
+                            style={{ backgroundColor: "#ff0023" }}
+                            direction="up"
+                            onPress={() => {
+                                navigation.navigate("agregarGastos")
+                            }}
+                            >
+                            <Icon name="plus" type="FontAwesome" />
+                            </Fab>
+                     
 
 
                     </View>
-
                     
                 </LinearGradient>
             </Container>

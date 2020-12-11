@@ -4,17 +4,12 @@ import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import agregarMovimiento from "../src/AgregarMovimientos"
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
 const state =[{fecha: new Date("2020","06","22")}];
-const moves = [
-    {movimiento: "entrada"},
-    {movimiento: "salida"},
-];
 
 const movimientos = ({ navigation }) => { 
   
@@ -39,7 +34,7 @@ const movimientos = ({ navigation }) => {
                                     </Card>
                                 </View>
                               
-                        <TouchableOpacity style={styles.botonAgregar} onPress={() => navigation.navigate("agregarMovimientos")} >
+                        <TouchableOpacity style={styles.botonAgregar}  >
                             <FontAwesome5 name="plus" size={40} color="black" />
                         </TouchableOpacity>
                     </View>
