@@ -24,6 +24,159 @@ const getGastos = (setGastosFunc) => {
   });
 };
 
+const getGastosAlimentacion = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 1",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+const getGastosVivienda = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 2",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+const getGastosTransporte = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 3",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+const getGastosSalud = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 4",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+const getGastosEntretenimiento = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 5",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+const getGastosVestuario = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 6",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+const getGastosEducacion = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 7",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+const getGastosOtrosGastos = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where idCategoria = 8",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos obtenidos");
+      }
+    );
+  });
+};
+
+
+
+
 // Obtener los categorias de gastos
 const getCategorias = (setCategoriasFunc) => {
   db.transaction((tx) => {
@@ -43,11 +196,29 @@ const getCategorias = (setCategoriasFunc) => {
     );
   });
 };
+const getCategoriasPorId = (setCategoriasPorIdFunc,idCategoria) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select categoria from categorias where id = ?",
+      [idCategoria],
+      (_, { rows: { _array } }) => {
+        setCategoriasPorIdFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener categorias por id");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Categorias por id obtenidos");
+      }
+    );
+  });
+};
 // Insertar gastos
-const insertGastos = (descripcion,monto,fecha,successFunc) => {
+const insertGastos = (descripcion,monto,idCategoria,successFunc) => {
   db.transaction(
     (tx) => {
-      tx.executeSql("insert into gastos (descripcion,monto) values (?,?)", [descripcion,monto]);
+      tx.executeSql("insert into gastos (descripcion,monto,idCategoria) values (?,?,?)", [descripcion,monto,idCategoria]);
     },
     (_t, error) => {
       console.log("Error al insertar gastos");
@@ -205,7 +376,16 @@ const setupCategoriasAsync = async () => {
 };
 export const database = {
   getGastos,
+  getGastosAlimentacion,
+  getGastosVivienda,
+  getGastosTransporte,
+  getGastosSalud,
+  getGastosEntretenimiento,
+  getGastosVestuario,
+  getGastosEducacion,
+  getGastosOtrosGastos,
   getCategorias,
+  getCategoriasPorId,
   insertGastos,
   dropDatabaseTableAsync,
   dropCategoriasTableAsync,

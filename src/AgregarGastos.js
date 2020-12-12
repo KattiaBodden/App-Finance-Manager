@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker,Content,Spinner} from "native-base";
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -7,31 +7,67 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {ContextoGastos} from "../src/context/movimientosContext";
-import { MuiPickersUtilsProvider} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import {Fontisto} from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
 import {ContextoCategorias} from "../src/context/categoriasContext"
-
+import * as Font from "expo-font";
 
  const AgregarGastos  = ({ navigation }) =>{ 
 
           const {categorias} = useContext(ContextoCategorias);
           const [descripcion, setDescripcion] = useState("");
           const [monto, setMonto] = useState("");
+          const [categoria,setCategoria] = useState("");
           const [fecha, setFecha] = useState(new Date());
           const contextoGastos = useContext(ContextoGastos);
           const { agregarGasto, refreshGastos } = contextoGastos;
-          
-          const [categoria, setCategoria] = useState("");
+          const [fontsLoaded, setFontsLoaded] = useState(false);
+          const [enableSave, setEnableSave] = useState(true);
+          const [errorDescripcion, setErrorDescripcion] = useState(false);
 
+
+
+          
+          useEffect(() => {
+            const loadFontsAsync = async () => {
+              await Font.loadAsync({
+                Roboto_medium: require("../node_modules/native-base/Fonts/Roboto_medium.ttf"),
+              }).then(() => {
+                setFontsLoaded(true);
+              });
+            };
+        
+            loadFontsAsync();
+          }, []);
          
+          // Ejecutar el efecto cuando el valor de la nota cambie
+            useEffect(() => {
+              if (descripcion) setEnableSave(false);
+              else setEnableSave(true);
+            }, [descripcion]);
+
+
           const handlerNewGasto = () => {
-          agregarGasto(descripcion,monto,refreshGastos);
-            navigation.goBack();
+
+            if (descripcion ,monto) {
+              agregarGasto(descripcion,monto,categoria,refreshGastos);
+              refreshGastos();
+              navigation.goBack();
+
+            }
+           
+            else {
+              setErrorDescripcion(true);
+            }         
           };
-         
+
+          if (!fontsLoaded)
+          return (
+            <Content contentContainerStyle={styles.content}>
+              <Spinner color="blue" />
+            </Content>
+          );
           console.log(categorias);
 
             return (
@@ -47,13 +83,16 @@ import {ContextoCategorias} from "../src/context/categoriasContext"
                         <View >
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>
-                            <Item style={styles.itemStyle} >
+                            <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
+ >
                                 <Input 
                                 value={descripcion}
                                 onChangeText={setDescripcion}
                                 placeholder='Descripción'/>
+                               
                             </Item>
-                            <Item style={styles.itemStyle} >
+                            
+                            <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
                                 <FontAwesome5 name="money-bill-alt" size={24} color="black" />
                                 <Input  placeholder='Monto'
                                  value={monto}
@@ -114,6 +153,9 @@ const styles = StyleSheet.create({
       height: height,
       width: width
       
+    },
+    inputError: {
+      borderColor: "red",
     },
     header: {
         backgroundColor: '#3CCCD6',
