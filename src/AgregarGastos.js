@@ -2,13 +2,13 @@ import React, { Component, useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker} from "native-base";
 import { StyleSheet, Text,Dimensions} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons';
+//import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {ContextoGastos} from "../src/context/movimientosContext";
-import { MuiPickersUtilsProvider} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+//import { MuiPickersUtilsProvider} from '@material-ui/pickers';
+//import DateFnsUtils from '@date-io/date-fns';
 import {Fontisto} from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 

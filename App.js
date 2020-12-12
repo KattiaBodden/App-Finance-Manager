@@ -8,6 +8,7 @@ import pantallaIngresos from "./src/pantallaIngresos"
 import pantallaGastos from "./src/pantallaGastos"
 import movimientos from "./src/movimientos"
 import AgregarGastos from './src/AgregarGastos'
+import balance from './src/balance'
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDataBase";
 import { GastosContextProvider } from "./src/context/movimientosContext";

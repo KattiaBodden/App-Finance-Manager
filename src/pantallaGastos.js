@@ -6,13 +6,13 @@ import { NavigationContainer} from '@react-navigation/native';
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
-import { DateTime } from "luxon";
-import { format} from 'date-fns';
+//import { DateTime } from "luxon";
+//import { format} from 'date-fns';
 
 const { width, height } = Dimensions.get("window");
 
 const pantallaGastos= ({ navigation }) => { 
-    var dateFormat = require("dateformat");
+    //var dateFormat = require("dateformat");
 
     const { gastos } = useContext(ContextoGastos);
     console.log(gastos);
