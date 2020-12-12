@@ -7,19 +7,29 @@ export const CategoriaContextProvider = (props) => {
   const { categorias: initialCategorias, children } = props;
   const [categorias, setCategorias] = useState(initialCategorias);
 
+
   useEffect(() => {
     refreshCategorias();
   }, []);
+
+
 
   const refreshCategorias = () => {
     return database.getCategorias(setCategorias);
   };
 
- 
+  /*const getCategoriasById = (id) => {
+    return database.getCategoriasPorId(id, setNote)};*/
 
+
+   
+  
+   
   // Crear el objeto de contexto
   const contextoCategoriasObject = {
     categorias,
+    refreshCategorias,
+
   };
 
   // Pasar los valores al proveedor y retornarlo
