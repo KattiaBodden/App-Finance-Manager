@@ -7,8 +7,6 @@ import { NavigationContainer} from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
 import {ContextoCategorias} from "../src/context/categoriasContext"
-import { DateTime } from "luxon";
-import { format} from 'date-fns';
 import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
