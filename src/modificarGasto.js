@@ -13,7 +13,7 @@ import { AntDesign } from '@expo/vector-icons';
 import {ContextoCategorias} from "../src/context/categoriasContext"
 import * as Font from "expo-font";
 
- const AgregarGastos  = ({ navigation }) =>{ 
+ const modificarGasto  = ({ navigation }) =>{ 
 
           const {categorias} = useContext(ContextoCategorias);
           const [descripcion, setDescripcion] = useState("");
@@ -53,7 +53,7 @@ import * as Font from "expo-font";
             if (descripcion , monto) {
              await agregarGasto(descripcion,monto,categoria,refreshGastos);
               navigation.goBack();
-              
+
             }
            
             else {
@@ -199,4 +199,4 @@ botonCategorias:{
 }
  });
 
-export default AgregarGastos;
+export default modificarGasto;
