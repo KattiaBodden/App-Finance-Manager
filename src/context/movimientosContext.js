@@ -9,6 +9,9 @@ export const GastosContextProvider = (props) => {
  
   const { gastos: initialGastos, children } = props;
   const [gastos, setGastos] = useState(initialGastos);
+
+  const { gastosAlimentacion: initialGastosAlimentacion, children1 } = props;
+  const [gastosAlimentacion , setGastosAlimentacion] = useState(initialGastosAlimentacion);
  
   const { gastosVivienda: initialGastosVivienda, children2 } = props;
   const [gastosVivienda, setGastosVivienda] = useState(initialGastosVivienda);
@@ -33,6 +36,7 @@ export const GastosContextProvider = (props) => {
 
   useEffect(() => {
     refreshGastos();
+    refreshGastosAlimentacion();
     refreshGastosVivienda();
     refreshGastosTransporte();
     refreshGastosSalud();
@@ -44,7 +48,10 @@ export const GastosContextProvider = (props) => {
   }, []);
   
   const refreshGastos = () => {
-    return database.getGastosAlimentacion(setGastos);
+    return database.getGastos(setGastos);
+  };
+  const refreshGastosAlimentacion = () => {
+    return database.getGastosAlimentacion(setGastosAlimentacion);
   };
   const refreshGastosVivienda = () => {
     return database.getGastosVivienda(setGastosVivienda);
@@ -82,6 +89,7 @@ export const GastosContextProvider = (props) => {
   // Crear el objeto de contexto
   const contextoGastosObject = {
     gastos,
+    gastosAlimentacion,
     gastosVivienda,
     gastosTrasporte,
     gastosSalud,
@@ -95,11 +103,15 @@ export const GastosContextProvider = (props) => {
   // Pasar los valores al proveedor y retornarlo
   return (
     <ContextoGastos.Provider value={contextoGastosObject}>
-      {children}
+      {children1}
       {children2}
       {children3}
       {children4}
-
+      {children5}
+      {children6}
+      {children7}
+      {children8}
+      {children}
     </ContextoGastos.Provider>
   );
 };

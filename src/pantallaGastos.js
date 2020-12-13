@@ -6,19 +6,21 @@ import { NavigationContainer} from '@react-navigation/native';
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
-import {ContextoCategorias} from "../src/context/categoriasContext"
 import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
 const pantallaGastos= ({ navigation }) => { 
 
-    const {gastos,gastosVivienda,gastosTransporte,gastosSalud,gastosEntretenimiento,gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);
-    var montos = gastos.map((gasto)=>(gasto.monto));
+    const {gastos,gastosAlimentacion,gastosVivienda,gastosTrasporte,gastosSalud,gastosEntretenimiento,gastosVestuario,gastosEducacion,gastosOtros} = useContext(ContextoGastos);
+    var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+    
+    
     var suma = 0;
-    montos.forEach(function(monto){
+    montos ? montos.forEach(function(monto){
         suma += monto;
-    });
+    }):null; 
+   
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
@@ -36,22 +38,33 @@ const pantallaGastos= ({ navigation }) => {
                        <Card style={styles.lista}>
                            <ScrollView>
                               <List>
-                                 <ListItem itemDivider>
-                                     <Text>Alimentacion</Text>
-                                 </ListItem>   
-                                {gastos
+                                    
+                                 {gastosAlimentacion ?
+                                    <ListItem itemDivider>
+                                        <Text>Alimentacion</Text>
+                                    </ListItem>
+                                    :null
+                                  }
+                                    
+                                {gastosAlimentacion
                          
-                                    ? gastos.map((gasto) => (
-                                        <ListItem key={gasto.id.toString()}>
-                                            <Left><Text>{gasto.descripcion}</Text></Left> 
-                                            <Right><Text> {gasto.monto}</Text></Right>  
+                                    ? 
+                                    
+                                    gastosAlimentacion.map((alimento) => (
+                                        <ListItem key={alimento.id.toString()}>
+                                            <Left><Text>{alimento.descripcion}</Text></Left> 
+                                            <Right><Text> {alimento.monto}</Text></Right>  
  
                                         </ListItem>
                                     ))
                                     : null}
-                                 <ListItem itemDivider>
-                                     <Text>Vivienda</Text>
-                                 </ListItem>
+
+                                  {gastosVivienda ?
+                                    <ListItem itemDivider>
+                                        <Text>Vivienda</Text>
+                                    </ListItem>
+                                  :null}  
+                                 
                                  {gastosVivienda
                          
                                     ? gastosVivienda.map((vivienda) => (
@@ -63,12 +76,15 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}
 
-                                <ListItem itemDivider>
-                                     <Text>Trasporte</Text>
-                                 </ListItem>
-                                 {gastosTransporte
+                                {gastosTrasporte ? 
+                                    <ListItem itemDivider>
+                                        <Text>Trasporte</Text>
+                                    </ListItem>
+                                    :null}
+
+                                 {gastosTrasporte
                          
-                                    ? gastosTransporte.map((transporte) => (
+                                    ? gastosTrasporte.map((transporte) => (
                                         <ListItem key={transporte.id.toString()}>
                                             <Left><Text>{transporte.descripcion}</Text></Left> 
                                             <Right><Text> {transporte.monto}</Text></Right>  
@@ -76,10 +92,12 @@ const pantallaGastos= ({ navigation }) => {
                                         </ListItem>
                                     ))
                                     : null} 
-
-                                <ListItem itemDivider>
-                                     <Text>Salud</Text>
-                                 </ListItem>
+                                {gastosSalud ?
+                                     <ListItem itemDivider>
+                                        <Text>Salud</Text>
+                                    </ListItem>
+                                :null}
+                               
                                  {gastosSalud
                          
                                     ? gastosSalud.map((salud) => (
@@ -91,9 +109,12 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}  
 
-                                 <ListItem itemDivider>
-                                     <Text>Entretenimiento</Text>
-                                 </ListItem>
+                                 {gastosEntretenimiento ?
+                                    <ListItem itemDivider>
+                                        <Text>Entretenimiento</Text>
+                                    </ListItem>
+                                 :null}
+                                 
                                  {gastosEntretenimiento
                          
                                     ? gastosEntretenimiento.map((entretenimiento) => (
@@ -105,10 +126,12 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}    
 
-
-                                <ListItem itemDivider>
-                                    <Text>Vestuario</Text>
-                                 </ListItem>
+                                {gastosVestuario ?
+                                    <ListItem itemDivider>
+                                        <Text>Vestuario</Text>
+                                    </ListItem>
+                                :null}
+                                
                                  {gastosVestuario
                          
                                     ? gastosVestuario.map((vestuario) => (
@@ -120,9 +143,12 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}     
 
-                                  <ListItem itemDivider>
-                                     <Text>Educacion</Text>
-                                 </ListItem>
+                                    {gastosEducacion ?
+                                         <ListItem itemDivider>
+                                            <Text>Educacion</Text>
+                                        </ListItem>
+                                    :null}
+                                 
                                  {gastosEducacion
                          
                                     ? gastosEducacion.map((educacion) => (
@@ -134,9 +160,12 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}         
 
+                                {gastosOtros ?
                                 <ListItem itemDivider>
-                                     <Text>Otros</Text>
-                                 </ListItem>
+                                    <Text>Otros</Text>
+                                </ListItem>
+                                :null}
+                                
                                  {gastosOtros
                          
                                     ? gastosOtros.map((otros) => (

@@ -175,6 +175,26 @@ const getGastosOtrosGastos = (setGastosFunc) => {
 };
 
 
+const sumarGastos = (setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select SUM monto from gastos ",
+      [],
+      (_, { rows: { _array } }) => {
+        setGastosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de sumar los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gastos sumados");
+      }
+    );
+  });
+};
+
+
 
 
 // Obtener los categorias de gastos
@@ -281,7 +301,8 @@ const setupDatabaseTableAsync = async () => {
                                              monto real not null ,
                                              fecha DATE DEFAULT (dateTime('now','localtime')),
                                              idCategoria integer ,
-                                              foreign key (idCategoria) references categorias(id)
+                                             foreign key (idCategoria) references categorias(id)
+                                               
                                              );` );
       },
       (_t, error) => {

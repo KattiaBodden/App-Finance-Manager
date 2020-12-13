@@ -1,8 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { PieChart } from "react-native-chart-kit";
+import { ContextoGastos } from "../src/context/movimientosContext";
 
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
@@ -11,22 +12,7 @@ const { width, height } = Dimensions.get("window");
 const state =[{fecha: new Date("2020","06","22")}];
 
 // data del grafico
-const data = [
-    {
-      name: "Ingresos",
-      population: 215,
-      color: "#236266",
-      legendFontColor: "black",
-      legendFontSize: 15
-    },
-    {
-      name: "Gastos",
-      population: 280,
-      color: "#de3537",
-      legendFontColor: "black",
-      legendFontSize: 15
-    }
-  ];
+
 
 const chartConfig = {
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
@@ -36,7 +22,31 @@ const chartConfig = {
   };
 
 const balance = ({ navigation }) => { 
-  
+  const {gastos } = useContext(ContextoGastos);
+  var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+    
+    
+    var suma = 0;
+    montos ? montos.forEach(function(monto){
+        suma += monto;
+    }):null; 
+
+  const data = [
+    {
+      name: "Ingresos",
+      population: 215,
+      color: "#236266",
+      legendFontColor: "black",
+      legendFontSize: 15
+    },
+    {
+      name: "Gastos",
+      population: suma,
+      color: "#de3537",
+      legendFontColor: "black",
+      legendFontSize: 15
+    }
+  ];
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >

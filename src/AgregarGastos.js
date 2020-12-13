@@ -48,11 +48,10 @@ import * as Font from "expo-font";
             }, [descripcion]);
 
 
-          const handlerNewGasto = () => {
+          const handlerNewGasto = async () => {
 
-            if (descripcion ,monto) {
-              agregarGasto(descripcion,monto,categoria,refreshGastos);
-              refreshGastos();
+            if (descripcion , monto) {
+             await agregarGasto(descripcion,monto,categoria,refreshGastos);
               navigation.goBack();
 
             }
