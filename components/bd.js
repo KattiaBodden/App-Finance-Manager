@@ -400,7 +400,7 @@ const ingresosTableAsync = async () => {
         tx.executeSql(
           `create table if not exists ingresos (id integer primary key autoincrement,
                                                 descripcion text not null ,
-                                                monto real not null ,
+                                                monto real not null 
                                                 );` );
       },
       (_t, error) => {

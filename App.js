@@ -14,6 +14,8 @@ import useDatabase from "./src/hooks/useDataBase";
 import { GastosContextProvider } from "./src/context/movimientosContext";
 import {CategoriaContextProvider} from "./src/context/categoriasContext"
 import { IngresosContextProvider } from "./src/context/ingresoContext";
+import agregarIngreso from './src/agregarIngreso'
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -39,6 +41,7 @@ export default function App() {
       <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
       <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
       <Stack.Screen name="balance" component={balance} />
+      <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
     </Stack.Navigator>
       
   </NavigationContainer>  

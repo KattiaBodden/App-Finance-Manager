@@ -1,16 +1,26 @@
-import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
+import React, { useContext } from "react";
+import {Container,View,Header,Item,Input,Icon,Fab,Card,List,ListItem, Left, Right, Body} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
+import { ContextoIngresos } from "../src/context/ingresoContext";
+import { ScrollView } from "react-native-gesture-handler";
+
 const { width, height } = Dimensions.get("window");
-const state =[{fecha: new Date("2020","06","22")}];
 
 const pantallaIngresos= ({ navigation }) => { 
-  
+
+    const {ingresos} = useContext(ContextoIngresos);
+    var montos = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+    
+    var suma = 0;
+    montos ? montos.forEach(function(monto){
+        suma += monto;
+    }):null; 
+
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
@@ -26,17 +36,38 @@ const pantallaIngresos= ({ navigation }) => {
                        <View style={styles.divisor}/>
                        
                        <Card style={styles.lista}>
-                            <Text style={styles.texto} >Aqui va el listado de ingresos</Text>
+                            
+                            <ScrollView>
+                              <List>
+                                 {ingresos ? 
+                                    ingresos.map((ingreso) => (
+                                        <ListItem key={ingreso.id.toString()}>
+                                            <Left><Text>{ingreso.descripcion}</Text></Left>
+                                            <Body><Text>L. {ingreso.monto} </Text></Body> 
+                                            <Right></Right>  
+                                        </ListItem>
+                                    ))
+                                    : null}
+
+                                </List>   
+                            </ScrollView>
+
+                            <View>
+                                <Text style={styles.textoTotal}>Total: L. {suma}</Text>
+                            </View>
                         </Card>
-                        
-                      <Button style={styles.boton}>
-                        <Icon name="add" style={styles.icono}></Icon>
-                      </Button>
-
-
+                        <Fab
+                            active={true}
+                            position="bottomRight"
+                            style={{ backgroundColor: "#AB2C2C" }}
+                            direction="up"
+                            onPress={() => {
+                                navigation.navigate("agregarIngreso")
+                            }}
+                            >
+                            <Icon name="plus" type="FontAwesome" />
+                        </Fab>
                     </View>
-
-                    
                 </LinearGradient>
             </Container>
          
@@ -99,7 +130,14 @@ const styles = StyleSheet.create({
         marginLeft: 290,
         position: "absolute",
         top: 500
-    }
+    },
+
+    textoTotal:{
+        fontWeight : "bold",
+        textAlign:"center",
+        fontSize:20,
+        marginBottom: 20
+    },
  });
 
 export default pantallaIngresos;
