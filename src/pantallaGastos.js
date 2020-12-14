@@ -20,7 +20,7 @@ const pantallaGastos= ({ navigation }) => {
     montos ? montos.forEach(function(monto){
         suma += monto;
     }):null; 
-   
+   console.log(suma);
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
@@ -221,7 +221,7 @@ const pantallaGastos= ({ navigation }) => {
                                  
                             </ScrollView>
                             <View>
-                                <Text style={styles.textoTotal}>Total: {suma}</Text>
+                                <Text style={styles.textoTotal} >Total: {suma}</Text>
                             </View>
                         </Card>
                         <Fab

@@ -10,23 +10,18 @@ import {ContextoGastos} from "../src/context/movimientosContext";
 import {Fontisto} from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
-import {ContextoCategorias} from "../src/context/categoriasContext"
 import * as Font from "expo-font";
 
- const modificarGasto  = ({ navigation }) =>{ 
 
-          const {categorias} = useContext(ContextoCategorias);
-          const [descripcion, setDescripcion] = useState("");
-          const [monto, setMonto] = useState("");
-          const [categoria,setCategoria] = useState("");
-          const [fecha, setFecha] = useState(new Date());
-          const contextoGastos = useContext(ContextoGastos);
-          const { agregarGasto, refreshGastos } = contextoGastos;
+ const modificarGasto  = ({ route,navigation }) =>{ 
+          const { id } = route.params;
+          const [newDescription, setNewDescription] = useState(null);
+          const [newMonto, setNewMonto] = useState(null);
+         
           const [fontsLoaded, setFontsLoaded] = useState(false);
-          const [enableSave, setEnableSave] = useState(true);
           const [errorDescripcion, setErrorDescripcion] = useState(false);
-
-
+          const { gasto, getGastoId ,modificarGastos} = useContext(ContextoGastos);
+          console.log(id);
 
           
           useEffect(() => {
@@ -42,23 +37,24 @@ import * as Font from "expo-font";
           }, []);
          
           // Ejecutar el efecto cuando el valor de la nota cambie
-            useEffect(() => {
-              if (descripcion) setEnableSave(false);
-              else setEnableSave(true);
-            }, [descripcion]);
+          useEffect(() => {
+            const getNote = () => {
+              getGastoId(id);
+            };
+            getNote();
+                if (gasto.length) {
+                setNewDescription(gasto[0].descripcion);
+          
+                console.log(setNewDescription);
+              }
+            }, [id, gasto]);
 
+          const updateGasto = async () => {
 
-          const handlerNewGasto = async () => {
-
-            if (descripcion , monto) {
-             await agregarGasto(descripcion,monto,categoria,refreshGastos);
+             await modificarGastos(newDescription,newMonto,id);
               navigation.goBack();
 
-            }
-           
-            else {
-              setErrorDescripcion(true);
-            }         
+                    
           };
 
           if (!fontsLoaded)
@@ -67,7 +63,7 @@ import * as Font from "expo-font";
               <Spinner color="blue" />
             </Content>
           );
-          console.log(categorias);
+          console.log(gasto);
 
             return (
                 <Container style={styles.Fondo}  >
@@ -80,13 +76,13 @@ import * as Font from "expo-font";
                         start={{ x: 1, y: 1 }}
                         end={{ x: 1, y: 0 }}> 
                         <View >
-                            <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
+                            <Text style={styles.textoTitulo}> Moficar Gastos </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
  >
                                 <Input 
-                                value={descripcion}
-                                onChangeText={setDescripcion}
+                                value={newDescription}
+                                onChangeText={setNewDescription}
                                 placeholder='Descripción'/>
                                
                             </Item>
@@ -94,41 +90,15 @@ import * as Font from "expo-font";
                             <Item style={errorDescripcion ? styles.inputError : styles.itemStyle} >
                                 <FontAwesome5 name="money-bill-alt" size={24} color="black" />
                                 <Input  placeholder='Monto'
-                                 value={monto}
-                                 onChangeText={setMonto}/>
+                                value={newMonto}
+                                  onChangeText={setNewMonto}/>
                             </Item>
                             
-                            <Item>
-                              <AntDesign name="select1" size={24} color="black" />            
-                                <Picker
-                                    mode="dropdown"
-                                    placeHolderText="Fecha"
-                                    label="Basic example"
-                                    selectedValue={categoria}
-                                    onValueChange={ (item) => {
-                                      setCategoria(item)
-                                    }}
-                                    animateYearScrolling
-                                    iosHeader="Categorias"
-                                    
-                                  >
-                                    {
-                                      categorias ? categorias.map((categoria)=>{
-                                        return(
-                                          <Picker.Item key={categoria.id.toString()} label={categoria.categoria} value={categoria.id}/>
-                                        )
-                                      }
+                            
 
-                                      )
-                                    : null
-                                    }
-                                   
-                                  </Picker>
-                            </Item>
-
-                            <Button style={styles.botonCrear} rounded onPress={handlerNewGasto}>
+                            <Button style={styles.botonCrear} rounded onPress={updateGasto}>
                               <Text style={styles.textoBotones}>
-                                Crear
+                                Modificar
                               </Text>    
                             </Button>
                             </View>
