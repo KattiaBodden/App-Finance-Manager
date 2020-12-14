@@ -13,6 +13,7 @@ import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDataBase";
 import { GastosContextProvider } from "./src/context/movimientosContext";
 import {CategoriaContextProvider} from "./src/context/categoriasContext"
+import { IngresosContextProvider } from "./src/context/ingresoContext";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -28,7 +29,8 @@ export default function App() {
    //falta poner la etiqueta movesContextProvider , revisar github
   return (
     <GastosContextProvider>
-    <CategoriaContextProvider>  
+    <CategoriaContextProvider>
+    <IngresosContextProvider> 
     <NavigationContainer>
     <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
       <Stack.Screen name="mainScreen" component={mainScreen} />
@@ -40,6 +42,7 @@ export default function App() {
     </Stack.Navigator>
       
   </NavigationContainer>  
+  </IngresosContextProvider> 
   </CategoriaContextProvider>
   </GastosContextProvider>
 
