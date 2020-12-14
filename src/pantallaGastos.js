@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left} from "native-base";
+import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 //import backend from "../api/backend";
@@ -7,7 +7,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
 import { ScrollView } from "react-native-gesture-handler";
-
+import { MaterialIcons } from '@expo/vector-icons';
 const { width, height } = Dimensions.get("window");
 
 const pantallaGastos= ({ navigation }) => { 
@@ -20,7 +20,7 @@ const pantallaGastos= ({ navigation }) => {
     montos ? montos.forEach(function(monto){
         suma += monto;
     }):null; 
-   
+   console.log(suma);
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
@@ -51,9 +51,13 @@ const pantallaGastos= ({ navigation }) => {
                                     ? 
                                     
                                     gastosAlimentacion.map((alimento) => (
-                                        <ListItem key={alimento.id.toString()}>
+                                        <ListItem key={alimento.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: alimento.id });
+                                        }}>
                                             <Left><Text>{alimento.descripcion}</Text></Left> 
-                                            <Right><Text> {alimento.monto}</Text></Right>  
+                                            <Body><Text> {alimento.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
  
                                         </ListItem>
                                     ))
@@ -68,9 +72,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosVivienda
                          
                                     ? gastosVivienda.map((vivienda) => (
-                                        <ListItem key={vivienda.id.toString()}>
+                                        <ListItem key={vivienda.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: vivienda.id });
+                                        }}>
                                             <Left><Text>{vivienda.descripcion}</Text></Left> 
-                                            <Right><Text> {vivienda.monto}</Text></Right>  
+                                            <Body><Text> {vivienda.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -85,9 +94,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosTrasporte
                          
                                     ? gastosTrasporte.map((transporte) => (
-                                        <ListItem key={transporte.id.toString()}>
+                                        <ListItem key={transporte.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: transporte.id });
+                                        }}>
                                             <Left><Text>{transporte.descripcion}</Text></Left> 
-                                            <Right><Text> {transporte.monto}</Text></Right>  
+                                            <Body><Text> {transporte.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -101,9 +115,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosSalud
                          
                                     ? gastosSalud.map((salud) => (
-                                        <ListItem key={salud.id.toString()}>
+                                        <ListItem key={salud.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: salud.id });
+                                        }}>
                                             <Left><Text>{salud.descripcion}</Text></Left> 
-                                            <Right><Text> {salud.monto}</Text></Right>  
+                                            <Body><Text> {salud.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -118,9 +137,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosEntretenimiento
                          
                                     ? gastosEntretenimiento.map((entretenimiento) => (
-                                        <ListItem key={entretenimiento.id.toString()}>
+                                        <ListItem key={entretenimiento.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: entretenimiento.id });
+                                        }}>
                                             <Left><Text>{entretenimiento.descripcion}</Text></Left> 
-                                            <Right><Text> {entretenimiento.monto}</Text></Right>  
+                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -135,9 +159,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosVestuario
                          
                                     ? gastosVestuario.map((vestuario) => (
-                                        <ListItem key={vestuario.id.toString()}>
+                                        <ListItem key={vestuario.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: vestuario.id });
+                                        }}>
                                             <Left><Text>{vestuario.descripcion}</Text></Left> 
-                                            <Right><Text> {vestuario.monto}</Text></Right>  
+                                            <Body><Text> {vestuario.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -152,9 +181,13 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosEducacion
                          
                                     ? gastosEducacion.map((educacion) => (
-                                        <ListItem key={educacion.id.toString()}>
+                                        <ListItem key={educacion.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: educacion.id });
+                                        }}>
                                             <Left><Text>{educacion.descripcion}</Text></Left> 
-                                            <Right><Text> {educacion.monto}</Text></Right>  
+                                            <Body><Text> {educacion.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
                                         </ListItem>
                                     ))
@@ -169,9 +202,14 @@ const pantallaGastos= ({ navigation }) => {
                                  {gastosOtros
                          
                                     ? gastosOtros.map((otros) => (
-                                        <ListItem key={otros.id.toString()}>
+                                        <ListItem key={otros.id.toString()}
+                                        onPress={() => {                                            
+                                            navigation.navigate("modificarGasto", { id: otros.id });
+                                        }}>
                                             <Left><Text>{otros.descripcion}</Text></Left> 
-                                            <Right><Text> {otros.monto}</Text></Right>  
+                                            <Body><Text> {otros.monto}</Text></Body>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
+
 
                                         </ListItem>
                                     ))
@@ -183,7 +221,7 @@ const pantallaGastos= ({ navigation }) => {
                                  
                             </ScrollView>
                             <View>
-                                <Text style={styles.textoTotal}>Total: {suma}</Text>
+                                <Text style={styles.textoTotal} >Total: {suma}</Text>
                             </View>
                         </Card>
                         <Fab

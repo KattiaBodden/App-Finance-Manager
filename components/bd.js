@@ -23,6 +23,44 @@ const getGastos = (setGastosFunc) => {
   });
 };
 
+const getGastoPorId = (id, setNoteFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from gastos where id = ?",
+      [id],
+      (_, { rows: { _array } }) => {
+        setNoteFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los gastos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Gasto obtenido");
+      }
+    );
+  });
+};
+// modificar gastos
+const updateGastos = (descripcion,monto,id, setGastosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "UPDATE  gastos set descripcion = ? , monto = ? where id = ?", [descripcion,monto,id]);
+  },
+    (_t, error) => {
+      console.log("Error al Actualizar gastos");
+      console.log(error);
+    },
+    (_t, _success) => {
+      setGastosFunc;
+      console.log("Gastos Actualizados");
+    }
+  );
+};
+
+
+
+
 const getGastosAlimentacion = (setGastosFunc) => {
   db.transaction((tx) => {
     tx.executeSql(
@@ -211,24 +249,7 @@ const getCategorias = (setCategoriasFunc) => {
     );
   });
 };
-const getCategoriasPorId = (setCategoriasPorIdFunc,idCategoria) => {
-  db.transaction((tx) => {
-    tx.executeSql(
-      "select categoria from categorias where id = ?",
-      [idCategoria],
-      (_, { rows: { _array } }) => {
-        setCategoriasPorIdFunc(_array);
-      },
-      (_t, error) => {
-        console.log("Error al momento de obtener categorias por id");
-        console.log(error);
-      },
-      (_t, _success) => {
-        console.log("Categorias por id obtenidos");
-      }
-    );
-  });
-};
+
 // Insertar gastos
 const insertGastos = (descripcion,monto,idCategoria,successFunc) => {
   db.transaction(
@@ -483,7 +504,7 @@ export const database = {
   getGastosEducacion,
   getGastosOtrosGastos,
   getCategorias,
-  getCategoriasPorId,
+  getGastoPorId,
   insertGastos,
   dropDatabaseTableAsync,
   dropCategoriasTableAsync,
@@ -491,6 +512,7 @@ export const database = {
   categoriesTableAsync,
   setupGastosAsync,
   setupCategoriasAsync,
+  updateGastos,
   ingresosTableAsync,
   insertIngresos,
   getIngresos,

@@ -9,6 +9,7 @@ export const GastosContextProvider = (props) => {
  
   const { gastos: initialGastos, children } = props;
   const [gastos, setGastos] = useState(initialGastos);
+  const [gasto,setGasto] = useState("");
 
   const { gastosAlimentacion: initialGastosAlimentacion, children1 } = props;
   const [gastosAlimentacion , setGastosAlimentacion] = useState(initialGastosAlimentacion);
@@ -86,9 +87,18 @@ export const GastosContextProvider = (props) => {
     return refreshGastos();
   };
 
+  const modificarGastos = async(descripcion,monto,id)   => {
+    await database.updateGastos(descripcion,monto,id,refreshGastos)
+    return refreshGastos();
+  }
+
+  const getGastoId = (id) => {
+    return database.getGastoPorId(id, setGasto);
+  }
   // Crear el objeto de contexto
   const contextoGastosObject = {
     gastos,
+    gasto,
     gastosAlimentacion,
     gastosVivienda,
     gastosTrasporte,
@@ -98,6 +108,8 @@ export const GastosContextProvider = (props) => {
     gastosEducacion,
     gastosOtros,
     agregarGasto,
+    getGastoId,
+    modificarGastos,
   };
 
   // Pasar los valores al proveedor y retornarlo
