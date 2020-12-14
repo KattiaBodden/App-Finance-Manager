@@ -3,7 +3,6 @@ import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("financeManager.db");
 
-
 // Obtener los gastos del usuario
 const getGastos = (setGastosFunc) => {
   db.transaction((tx) => {
@@ -174,7 +173,6 @@ const getGastosOtrosGastos = (setGastosFunc) => {
   });
 };
 
-
 const sumarGastos = (setGastosFunc) => {
   db.transaction((tx) => {
     tx.executeSql(
@@ -193,9 +191,6 @@ const sumarGastos = (setGastosFunc) => {
     );
   });
 };
-
-
-
 
 // Obtener los categorias de gastos
 const getCategorias = (setCategoriasFunc) => {
@@ -249,7 +244,6 @@ const insertGastos = (descripcion,monto,idCategoria,successFunc) => {
     }
   );
 };
-
 
 // Borrar la tabla gastos
 const dropDatabaseTableAsync = async () => {
@@ -395,6 +389,89 @@ const setupCategoriasAsync = async () => {
     );
   });
 };
+
+/*********  INGRESOS  ************/
+
+//Creacion de la tabla ingresos
+const ingresosTableAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql(
+          `create table if not exists ingresos (id integer primary key autoincrement,
+                                                descripcion text not null ,
+                                                monto real not null ,
+                                                );` );
+      },
+      (_t, error) => {
+        console.log("Error al momento de crear la tabla");
+        console.log(error);
+        reject(error);
+      },
+      (_t, success) => {
+        resolve(success);
+        console.log("Tabla Creada");
+
+      }
+    );
+  });
+};
+
+// Insertar ingresos
+const insertIngresos = (descripcion,monto,successFunc) => {
+  db.transaction(
+    (tx) => {
+      tx.executeSql("insert into ingresos (descripcion,monto) values (?,?)", [descripcion,monto]);
+    },
+    (_t, error) => {
+      console.log("Error al insertar ingresos");
+      console.log(error);
+    },
+    (_t, _success) => {
+      successFunc;
+    }
+  );
+};
+
+// Obtener ingresos del usuario
+const getIngresos = (setIngresosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from ingresos",
+      [],
+      (_, { rows: { _array } }) => {
+        setIngresosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los ingresos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Ingresos obtenidos");
+      }
+    );
+  });
+};
+
+// Borrar tabla ingresos
+const dropIngresosTableAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("drop table ingresos");
+      },
+      (_t, error) => {
+        console.log("Error al eliminar la tabla de ingresos");
+        reject(error);
+      },
+      (_t, result) => {
+        resolve(result);
+      }
+      
+    );
+  });
+};
+
 export const database = {
   getGastos,
   getGastosAlimentacion,
@@ -414,4 +491,8 @@ export const database = {
   categoriesTableAsync,
   setupGastosAsync,
   setupCategoriasAsync,
+  ingresosTableAsync,
+  insertIngresos,
+  getIngresos,
+  dropIngresosTableAsync,
 };
