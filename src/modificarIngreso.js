@@ -1,28 +1,21 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker,Content,Spinner} from "native-base";
+import {Container,View,Header,Item,Input,Icon, Right,Button,Content,Spinner} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
-//import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-
 import { LinearGradient } from 'expo-linear-gradient';
-import {ContextoGastos} from "../src/context/movimientosContext";
-import {Fontisto} from '@expo/vector-icons'; 
+import {ContextoIngresos} from "../src/context/ingresoContext"; 
 const { width, height } = Dimensions.get("window");
-import { AntDesign } from '@expo/vector-icons'; 
 import * as Font from "expo-font";
 
-
- const modificarGasto  = ({ route,navigation }) =>{ 
+ const modificarIngreso  = ({ route,navigation }) =>{ 
           const { id } = route.params;
           const [newDescription, setNewDescription] = useState(null);
           const [newMonto, setNewMonto] = useState(null);
          
           const [fontsLoaded, setFontsLoaded] = useState(false);
           const [errorDescripcion, setErrorDescripcion] = useState(false);
-          const { gasto, getGastoId ,modificarGastos} = useContext(ContextoGastos);
+          const { ingreso, getIngresoId ,modificarIngreso} = useContext(ContextoIngresos);
           console.log(id);
-
           
           useEffect(() => {
             const loadFontsAsync = async () => {
@@ -39,22 +32,20 @@ import * as Font from "expo-font";
           // Ejecutar el efecto cuando el valor de la nota cambie
           useEffect(() => {
             const getNote = () => {
-              getGastoId(id);
+              getIngresoId(id);
             };
             getNote();
-                if (gasto.length) {
-                setNewDescription(gasto[0].descripcion);
+                if (ingreso.length) {
+                setNewDescription(ingreso[0].descripcion);
           
                 console.log(setNewDescription);
               }
-            }, [id, gasto]);
+            }, [id, ingreso]);
 
-          const updateGasto = async () => {
+          const updateIngreso = async () => {
 
-             await modificarGastos(newDescription,newMonto,id);
-              navigation.goBack();
-
-                    
+             await modificarIngreso(newDescription,newMonto,id);
+              navigation.goBack();       
           };
 
           if (!fontsLoaded)
@@ -63,7 +54,7 @@ import * as Font from "expo-font";
               <Spinner color="blue" />
             </Content>
           );
-          console.log(gasto);
+          console.log(ingreso);
 
             return (
                 <Container style={styles.Fondo}  >
@@ -76,7 +67,7 @@ import * as Font from "expo-font";
                         start={{ x: 1, y: 1 }}
                         end={{ x: 1, y: 0 }}> 
                         <View >
-                            <Text style={styles.textoTitulo}> Moficar Gastos </Text> 
+                            <Text style={styles.textoTitulo}> Modificar Ingreso </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
  >
@@ -94,9 +85,7 @@ import * as Font from "expo-font";
                                   onChangeText={setNewMonto}/>
                             </Item>
                             
-                            
-
-                            <Button style={styles.botonCrear} rounded onPress={updateGasto}>
+                            <Button style={styles.botonCrear} rounded onPress={updateIngreso}>
                               <Text style={styles.textoBotones}>
                                 Modificar
                               </Text>    
@@ -162,11 +151,6 @@ viewStyle:{
     height:500,
     alignSelf:"center"
 },
-botonCategorias:{
-    backgroundColor:"transparent",
-    marginTop:30,
-    width:"auto",
-},
 logoImage: {
   width: 180,
   height: 60,
@@ -174,6 +158,6 @@ logoImage: {
   marginTop: 22,
   marginBottom: 19
 },
- });
+});
 
-export default modificarGasto;
+export default modificarIngreso;

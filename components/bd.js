@@ -493,6 +493,42 @@ const dropIngresosTableAsync = async () => {
   });
 };
 
+const getIngresoPorId = (id, setIngresosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "select * from ingresos where id = ?",
+      [id],
+      (_, { rows: { _array } }) => {
+        setIngresosFunc(_array);
+      },
+      (_t, error) => {
+        console.log("Error al momento de obtener los ingresos");
+        console.log(error);
+      },
+      (_t, _success) => {
+        console.log("Ingreso obtenido");
+      }
+    );
+  });
+};
+
+// Modificar ingresos
+const updateIngreso = (descripcion,monto,id, setIngresosFunc) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "UPDATE  ingresos set descripcion = ? , monto = ? where id = ?", [descripcion,monto,id]);
+  },
+    (_t, error) => {
+      console.log("Error al momento de actualizar ingresos");
+      console.log(error);
+    },
+    (_t, _success) => {
+      setIngresosFunc;
+      console.log("Ingresos Actualizados");
+    }
+  );
+};
+
 export const database = {
   getGastos,
   getGastosAlimentacion,
@@ -517,4 +553,6 @@ export const database = {
   insertIngresos,
   getIngresos,
   dropIngresosTableAsync,
+  getIngresoPorId,
+  updateIngreso,
 };

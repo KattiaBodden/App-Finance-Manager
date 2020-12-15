@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button} from "native-base";
-import { StyleSheet, Text,Dimensions} from "react-native";
+import {Container,View,Header,Form,Item,Input,Icon, Right,Button} from "native-base";
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import movimientos from "./movimientos" 
@@ -15,8 +15,8 @@ const mainScreen = ({ navigation }) => {
   
        return (
             <Container style={styles.Fondo}  >
-                <Header  style={styles.header} >
-                 
+                <Header style={styles.header} >
+                  <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
                 </Header>
                  <LinearGradient 
                     colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
@@ -24,6 +24,7 @@ const mainScreen = ({ navigation }) => {
                     start={{ x: 1, y: 1 }}
                     end={{ x: 1, y: 0 }}> 
                     <View >
+                        
                         <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
@@ -122,7 +123,16 @@ textoTitulo:{
   fontSize:40,
   fontWeight:"bold",
   marginLeft:40,
-}
+  
+},
+
+logoImage: {
+  width: 180,
+  height: 60,
+  alignSelf: "center",
+  marginTop: 15,
+  marginBottom: 10
+},
  });
 
 export default mainScreen;
