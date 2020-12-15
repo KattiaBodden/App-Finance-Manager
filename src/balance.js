@@ -1,6 +1,6 @@
 import React, {  useContext} from "react";
 import {Container,View,Header,Button} from "native-base";
-import { StyleSheet, Text,Dimensions} from "react-native";
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
 import { ContextoIngresos } from "../src/context/ingresoContext";

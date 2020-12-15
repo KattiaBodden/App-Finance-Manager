@@ -308,11 +308,11 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     logoImage: {
-        width: 180,
+        width: width * 0.85,
         height: 60,
         alignSelf: "center",
         marginTop: 22,
-        marginBottom: 19
+        marginLeft: 5
       },
  });
 
