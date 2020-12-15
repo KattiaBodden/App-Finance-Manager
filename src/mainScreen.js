@@ -1,15 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon, Right,Button} from "native-base";
+import {Container,View,Header,Button} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons'; 
-import movimientos from "./movimientos" 
-
-//import backend from "../api/backend";
-//import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
-const state =[{fecha: new Date("2020","06","22")}];
 
 const mainScreen = ({ navigation }) => { 
   
@@ -34,10 +28,7 @@ const mainScreen = ({ navigation }) => {
                           <MaterialIcons name="money-off" size={24} color="black" />
                             <Text style={styles.textoBotones}>Gastos</Text>
                         </Button> 
-                        <Button  style={styles.botonMovimientos} onPress={() => navigation.navigate("movimientos")}>
-                          <MaterialIcons name="compare-arrows" size={24} color="black" />
-                            <Text style={styles.textoBotones}>Movimientos</Text>
-                        </Button>
+                        
                         <Button  style={styles.botonBalance} onPress={() => navigation.navigate("balance")}>
                           <MaterialIcons name="account-balance" size={24} color="black" />
                             <Text style={styles.textoBotones}>Balance</Text>

@@ -1,9 +1,6 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card,List,ListItem,Fab,Left,Body} from "native-base";
+import React, { useContext} from "react";
+import {Container,View,Header,Icon,Right,Card,List,ListItem,Fab,Left,Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
-//import backend from "../api/backend";
-//import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoGastos } from "../src/context/movimientosContext";
 import { ScrollView } from "react-native-gesture-handler";

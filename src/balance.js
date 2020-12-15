@@ -1,14 +1,10 @@
-import React, { Component, useContext, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
-import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
+import React, {  useContext} from "react";
+import {Container,View,Header,Button} from "native-base";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
 import { ContextoIngresos } from "../src/context/ingresoContext";
 import { MaterialIcons } from '@expo/vector-icons'; 
-
-//import backend from "../api/backend";
-//import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
 

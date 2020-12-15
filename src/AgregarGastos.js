@@ -1,13 +1,10 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker,Content,Spinner} from "native-base";
+import React, {  useEffect, useState ,useContext} from "react";
+import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner} from "native-base";
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
-//import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {ContextoGastos} from "../src/context/movimientosContext";
-import {Fontisto} from '@expo/vector-icons'; 
 const { width, height } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons'; 
 import {ContextoCategorias} from "../src/context/categoriasContext"
