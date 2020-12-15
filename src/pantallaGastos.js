@@ -41,9 +41,9 @@ const pantallaGastos= ({ navigation }) => {
                            <ScrollView>
                               <List>
                                     
-                                 {gastosAlimentacion ?
-                                    <ListItem itemDivider>
-                                        <Text>Alimentacion</Text>
+                                 {gastosAlimentacion != "" ?
+                                    <ListItem itemDivider style={styles.item}  >
+                                        <Text style={styles.textItem}>Alimentacion</Text>
                                     </ListItem>
                                     :null
                                   }
@@ -65,9 +65,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}
 
-                                  {gastosVivienda ?
-                                    <ListItem itemDivider>
-                                        <Text>Vivienda</Text>
+                                  {gastosVivienda != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Vivienda</Text>
                                     </ListItem>
                                   :null}  
                                  
@@ -87,9 +87,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}
 
-                                {gastosTrasporte ? 
-                                    <ListItem itemDivider>
-                                        <Text>Trasporte</Text>
+                                {gastosTrasporte != "" ? 
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Trasporte</Text>
                                     </ListItem>
                                     :null}
 
@@ -108,9 +108,9 @@ const pantallaGastos= ({ navigation }) => {
                                         </ListItem>
                                     ))
                                     : null} 
-                                {gastosSalud ?
-                                     <ListItem itemDivider>
-                                        <Text>Salud</Text>
+                                {gastosSalud != "" ?
+                                     <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Salud</Text>
                                     </ListItem>
                                 :null}
                                
@@ -130,9 +130,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}  
 
-                                 {gastosEntretenimiento ?
-                                    <ListItem itemDivider>
-                                        <Text>Entretenimiento</Text>
+                                 {gastosEntretenimiento != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Entretenimiento</Text>
                                     </ListItem>
                                  :null}
                                  
@@ -152,9 +152,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}    
 
-                                {gastosVestuario ?
-                                    <ListItem itemDivider>
-                                        <Text>Vestuario</Text>
+                                {gastosVestuario != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text style={styles.textItem}>Vestuario</Text>
                                     </ListItem>
                                 :null}
                                 
@@ -174,9 +174,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}     
 
-                                    {gastosEducacion ?
-                                         <ListItem itemDivider>
-                                            <Text>Educacion</Text>
+                                    {gastosEducacion != "" ?
+                                         <ListItem itemDivider style={styles.item}>
+                                            <Text style={styles.textItem}>Educacion</Text>
                                         </ListItem>
                                     :null}
                                  
@@ -195,9 +195,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}         
 
-                                {gastosOtros ?
-                                <ListItem itemDivider>
-                                    <Text>Otros</Text>
+                                {gastosOtros != "" ?
+                                <ListItem itemDivider style={styles.item}>
+                                    <Text style={styles.textItem}>Otros</Text>
                                 </ListItem>
                                 :null}
                                 
@@ -314,8 +314,17 @@ const styles = StyleSheet.create({
         width: width * 0.1,
         height: 50,
         marginTop: 10,
-        marginLeft: 19,
     },
+    item:{
+        backgroundColor: "#FFCDD2",
+        justifyContent:"center"
+
+    },
+    textItem:{
+        fontWeight:"bold",
+        fontSize:15,
+        color: '#236266',
+    }
  });
 
 export default pantallaGastos;
