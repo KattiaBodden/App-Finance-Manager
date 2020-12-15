@@ -15,8 +15,7 @@ const mainScreen = ({ navigation }) => {
                     start={{ x: 1, y: 1 }}
                     end={{ x: 1, y: 0 }}> 
                     <View >
-                    <Image source={require("../assets/logo_transparente.png")} style={styles.logoImage} />
-               
+                    
                         <Text style={styles.textoTitulo}>¡Bienvenido! </Text> 
                         <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
                           <MaterialIcons name="attach-money" size={24} color="black" />
@@ -106,7 +105,7 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:20,
+  marginTop:140,
   color:"#FFFFFF",
   fontSize:40,
   fontWeight:"bold",
@@ -114,13 +113,6 @@ textoTitulo:{
   
 },
 
-logoImage: {
-  width: width * 0.85,
-  height: 130,
-  alignSelf: "center",
-  marginTop: 25,
-  marginBottom: 10
-},
 });
 
 export default mainScreen;

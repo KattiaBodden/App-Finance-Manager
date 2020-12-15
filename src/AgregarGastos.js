@@ -1,5 +1,5 @@
 import React, {  useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner} from "native-base";
+import {Container,View,Header,Item,Input,Button,Picker,Content,Spinner, Left} from "native-base";
 import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -70,7 +70,10 @@ import * as Font from "expo-font";
 
             return (
                 <Container style={styles.Fondo}  >
-                    
+                    <Header style={styles.header}>
+                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                    </Left>
+                </Header>
                      <LinearGradient 
                         colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                         style={styles.LinearGradient}
@@ -78,7 +81,6 @@ import * as Font from "expo-font";
                         end={{ x: 1, y: 0 }}> 
                         <View >
                             
-                            <Image source={require("../assets/letras_transparente.png")} style={styles.logoImage} />  
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
@@ -177,11 +179,11 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:20,
+  marginTop:40,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
-  marginLeft:45,
+  alignSelf: "center"
 },
 itemStyle:{
     marginTop:20,
@@ -197,11 +199,10 @@ botonCategorias:{
     width:"auto",
 },
 logoImage: {
-  width: 180,
-  height: 60,
-  alignSelf: "center",
-  marginTop: 22,
-  marginBottom: 19
+  width: width * 0.1,
+  height: 50,
+  marginTop: 10,
+  marginLeft: 19,
 },
  });
 

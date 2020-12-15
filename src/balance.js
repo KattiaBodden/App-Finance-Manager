@@ -1,5 +1,5 @@
 import React, {  useContext} from "react";
-import {Container,View,Header,Button} from "native-base";
+import {Container,View,Header,Button, Left} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
@@ -55,14 +55,16 @@ const balance = ({ navigation }) => {
   ];
        return (
             <Container style={styles.Fondo}  >
-      
+                <Header style={styles.header}>
+                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                    </Left>
+                </Header>
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
                    start={{ x: 1, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
-                    <Image source={require("../assets/letras.png")} style={styles.logoImage} />
-               
+                    
                     <Text style={styles.h1}>Balance</Text>
                     <View style={styles.divisor}/>
                     {
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
       
     },
     header: {
-        backgroundColor: '#31898F',
+        backgroundColor: '#3CCCD6',
     },
 
     h1:{
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
         marginTop: 12,
         color: '#236266',
+        
     },
     h2:{
       fontSize: 33,
@@ -215,11 +218,10 @@ textoBotones:{
 },
 
 logoImage: {
-  width: width * 0.9,
-  height: 60,
-  alignSelf: "center",
-  marginTop: 25,
-  marginBottom: 10
+  width: width * 0.1,
+  height: 50,
+  marginTop: 10,
+  marginLeft: 19,
 },
  });
 
