@@ -7,12 +7,17 @@ const useDatabase = () => {
   const loadDatabase = async () => {
     try {
 
+      //Borrar Tablas
       //await database.dropDatabaseTableAsync();
       //await database.dropCategoriasTableAsync();
       //await database.dropIngresosTableAsync();
+
+      //Crear tablas
       //await database.ingresosTableAsync();
       //await database.setupDatabaseTableAsync();
       //await database.categoriesTableAsync();
+
+      //Llenar Tabla de Categorias
       //await database.setupCategoriasAsync();
   
       // Finaliza la carga de la DB
