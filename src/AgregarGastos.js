@@ -81,6 +81,7 @@ import * as Font from "expo-font";
                         end={{ x: 1, y: 0 }}> 
                         <View >
                             
+
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}

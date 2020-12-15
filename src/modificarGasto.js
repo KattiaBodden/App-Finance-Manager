@@ -145,11 +145,11 @@ textoBotones:{
   textAlign:"center",
 },      
 textoTitulo:{
-  marginTop:40,
+  marginTop:20,
   color:"#FFFFFF",
   fontSize:30,
   fontWeight:"bold",
-  marginLeft:0,
+  marginLeft:45,
   alignSelf: "center"
 },
 itemStyle:{
