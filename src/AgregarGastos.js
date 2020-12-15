@@ -70,10 +70,7 @@ import * as Font from "expo-font";
 
             return (
                 <Container style={styles.Fondo}  >
-                    <Header style={styles.header}>
-                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
-                    </Left>
-                </Header>
+                    
                      <LinearGradient 
                         colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                         style={styles.LinearGradient}
@@ -81,7 +78,8 @@ import * as Font from "expo-font";
                         end={{ x: 1, y: 0 }}> 
                         <View >
                             
-
+                            <Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                    
                             <Text style={styles.textoTitulo}> Agregar Gastos </Text> 
                             <View style={styles.viewStyle}>
                             <Item  style={errorDescripcion ? styles.inputError : styles.itemStyle}
@@ -202,7 +200,7 @@ botonCategorias:{
 logoImage: {
   width: width * 0.1,
   height: 50,
-  marginTop: 10,
+  marginTop: 50,
   marginLeft: 19,
 },
  });

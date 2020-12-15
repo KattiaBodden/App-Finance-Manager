@@ -20,17 +20,15 @@ const pantallaIngresos= ({ navigation }) => {
 
        return (
             <Container style={styles.Fondo}>
-                <Header style={styles.header}>
-                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
-                    </Left>
-                </Header>
+                  
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
                    start={{ x: 1, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
                    <View >
-                        
+                   <Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                 
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
                        
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     h1:{
         fontSize: 33,
         textAlign:"center",
-        marginTop: 5,
+        marginTop: 0,
         color: '#236266',
     },
 
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
     logoImage: {
         width: width * 0.1,
         height: 50,
-        marginTop: 10,
+        marginTop: 40,
         marginLeft: 19,
     },
  });
