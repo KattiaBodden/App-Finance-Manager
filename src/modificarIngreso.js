@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
+import React, {  useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Item,Input,Icon, Right,Button,Content,Spinner} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';

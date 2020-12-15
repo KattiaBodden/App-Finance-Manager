@@ -55,7 +55,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: alimento.id });
                                         }}>
                                             <Left><Text>{alimento.descripcion}</Text></Left> 
-                                            <Body><Text> L.{alimento.monto}</Text></Body>  
+                                            <Body><Text> {alimento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
  
                                         </ListItem>
@@ -76,7 +76,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vivienda.id });
                                         }}>
                                             <Left><Text>{vivienda.descripcion}</Text></Left> 
-                                            <Body><Text> L.{vivienda.monto}</Text></Body>  
+                                            <Body><Text> {vivienda.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -98,7 +98,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: transporte.id });
                                         }}>
                                             <Left><Text>{transporte.descripcion}</Text></Left> 
-                                            <Body><Text> L.{transporte.monto}</Text></Body>  
+                                            <Body><Text> {transporte.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -119,7 +119,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: salud.id });
                                         }}>
                                             <Left><Text>{salud.descripcion}</Text></Left> 
-                                            <Body><Text> L.{salud.monto}</Text></Body>  
+                                            <Body><Text> {salud.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -141,7 +141,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: entretenimiento.id });
                                         }}>
                                             <Left><Text>{entretenimiento.descripcion}</Text></Left> 
-                                            <Body><Text> L.{entretenimiento.monto}</Text></Body>  
+                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -163,7 +163,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vestuario.id });
                                         }}>
                                             <Left><Text>{vestuario.descripcion}</Text></Left> 
-                                            <Body><Text> L.{vestuario.monto}</Text></Body>  
+                                            <Body><Text> {vestuario.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -185,7 +185,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: educacion.id });
                                         }}>
                                             <Left><Text>{educacion.descripcion}</Text></Left> 
-                                            <Body><Text> L.{educacion.monto}</Text></Body>  
+                                            <Body><Text> {educacion.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
                                         </ListItem>
@@ -206,7 +206,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: otros.id });
                                         }}>
                                             <Left><Text>{otros.descripcion}</Text></Left> 
-                                            <Body><Text> L.{otros.monto}</Text></Body>  
+                                            <Body><Text> {otros.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -220,7 +220,7 @@ const pantallaGastos= ({ navigation }) => {
                                  
                             </ScrollView>
                             <View>
-                                <Text style={styles.textoTotal} >Total: L.{suma}</Text>
+                                <Text style={styles.textoTotal} >Total: {suma}</Text>
                             </View>
                         </Card>
                         <Fab
@@ -308,11 +308,11 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     logoImage: {
-        width: width * 0.85,
+        width: 180,
         height: 60,
         alignSelf: "center",
         marginTop: 22,
-        marginLeft: 5
+        marginBottom: 19
       },
  });
 

@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-import {Container,View,Header,Item,Input,Icon,Fab,Card,List,ListItem, Left, Right, Body} from "native-base";
+import {Container,View,Header,Icon,Fab,Card,List,ListItem, Left, Right, Body} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-//import backend from "../api/backend";
-//import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
 import { ContextoIngresos } from "../src/context/ingresoContext";
 import { ScrollView } from "react-native-gesture-handler";

@@ -1,15 +1,12 @@
-import React, { Component, useContext, useEffect, useState } from "react";
-import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
-import { StyleSheet, Text,Dimensions, Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
+import React, {  useContext} from "react";
+import {Container,View,Header,Button} from "native-base";
+import { StyleSheet, Text,Dimensions} from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
-
-//import backend from "../api/backend";
-//import getEnvVars from "../../enviroment";
+import { ContextoIngresos } from "../src/context/ingresoContext";
+import { MaterialIcons } from '@expo/vector-icons'; 
 import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get("window");
-const state =[{fecha: new Date("2020","06","22")}];
 
 // data del grafico
 
@@ -22,26 +19,35 @@ const chartConfig = {
   };
 
 const balance = ({ navigation }) => { 
-  const {gastos } = useContext(ContextoGastos);
+  const {gastos} = useContext(ContextoGastos);
+  const {ingresos} = useContext(ContextoIngresos);
+
   var montos = gastos ? gastos.map((gasto)=>(gasto.monto)) : null;
+  var montosIngreso = ingresos ? ingresos.map((ingreso)=>(ingreso.monto)) : null;
+
     
-    
-    var suma = 0;
+    var sumaGasto = 0;
     montos ? montos.forEach(function(monto){
-        suma += monto;
+        sumaGasto += monto;
     }):null; 
 
+    var sumaIngreso = 0;
+    montosIngreso ? montosIngreso.forEach(function(monto){
+        sumaIngreso += monto;
+    }):null; 
+
+     var resta = sumaIngreso - sumaGasto; 
   const data = [
     {
       name: "Ingresos",
-      population: 215,
+      population: sumaIngreso,
       color: "#236266",
       legendFontColor: "black",
       legendFontSize: 15
     },
     {
       name: "Gastos",
-      population: suma,
+      population: sumaGasto,
       color: "#de3537",
       legendFontColor: "black",
       legendFontSize: 15
@@ -59,9 +65,23 @@ const balance = ({ navigation }) => {
                
                     <Text style={styles.h1}>Balance</Text>
                     <View style={styles.divisor}/>
-                   <View style={styles.view}>
+                    {
+                      ingresos,gastos <= 0 ?
+                      <View>
+                        <Text style={styles.advertencia}>Registra tus ingresos y gastos para ver Balance</Text>
+                        <Button  style={styles.botonIngresos} onPress={() => navigation.navigate("pantallaIngresos")}> 
+                        <MaterialIcons name="attach-money" size={24} color="black" />
+                          <Text style={styles.textoBotones}>Ingresos</Text>
+                      </Button> 
+                      <Button  style={styles.botonGastos} onPress={() => navigation.navigate("pantallaGastos")}>
+                        <MaterialIcons name="money-off" size={24} color="black" />
+                          <Text style={styles.textoBotones}>Gastos</Text>
+                      </Button> 
+                    </View>
+                      :
+                      <View style={styles.view}>
 
-                       <PieChart
+                      <PieChart
                             //doughnut={true}
                             data={data}
                             width={width}
@@ -72,9 +92,26 @@ const balance = ({ navigation }) => {
                             absolute
                         /> 
                     </View>
-                    <View>
-                      <Text style={styles.texto}>Movimientos en orden</Text>
-                    </View>
+
+                    }
+                   
+                       
+                   
+                    {
+                      resta < 0 ?  
+                      <Text  style={styles.h2}>Te has pasado de tu presupesto </Text>
+                        : null
+                    }
+                    {
+                      resta > 0 ?  
+                      <Text style={styles.h2}>Te quedan {resta} de tu presupuesto</Text>
+                        : null
+                    }
+                     {
+                      resta = 0 ?  
+                      <Text ></Text>
+                        : null
+                    }
                 </LinearGradient>
             </Container>
         );                  
@@ -101,6 +138,19 @@ const styles = StyleSheet.create({
         marginTop: 12,
         color: '#236266',
     },
+    h2:{
+      fontSize: 33,
+      textAlign:"center",
+      marginTop: 12,
+      color: '#FFFFFF',
+  },
+  advertencia:{
+    fontSize: 30,
+    textAlign:"center",
+    marginTop: 12,
+    color: 'red',
+    
+},
 
     divisor:{
         borderBottomColor: '#236266',
@@ -135,13 +185,42 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         marginTop: 15,
     },
-    logoImage: {
-      width: width * 0.9,
-      height: 60,
-      alignSelf: "center",
-      marginTop: 25,
-      marginBottom: 10
-    },
+    botonIngresos:{
+      width:190,
+      height:60,
+      backgroundColor:"#ffffff",
+      marginTop:50,
+      alignSelf:"center",
+      borderRadius:26,
+      alignContent:"center",
+      justifyContent:"center",
+
+  },
+  botonGastos:{
+    width:190,
+    height:60,
+    backgroundColor:"#ffffff",
+    marginTop:50,
+    alignSelf:"center",
+    borderRadius:26,
+    alignContent:"center",
+    justifyContent:"center",
+
+},
+textoBotones:{
+  fontWeight:"bold",
+  fontSize:20,
+  justifyContent:"center",
+  textAlign:"center",
+},
+
+logoImage: {
+  width: width * 0.9,
+  height: 60,
+  alignSelf: "center",
+  marginTop: 25,
+  marginBottom: 10
+},
  });
 
 export default balance;

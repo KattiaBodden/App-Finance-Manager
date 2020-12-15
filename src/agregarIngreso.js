@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState ,useContext} from "react";
-import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker,Content,Spinner} from "native-base";
+import React, {  useEffect, useState ,useContext} from "react";
+import {Container,View,Header,Item,Input,Icon,Button,Content,Spinner} from "native-base";
 import { StyleSheet, Text,Dimensions, Image} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {ContextoIngresos} from "../src/context/ingresoContext";
