@@ -24,8 +24,12 @@ const pantallaGastos= ({ navigation }) => {
        return (
             <Container style={styles.Fondo}>
                  <Header style={styles.header}>
-                    <Left><Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
+                    <Left>
+                        <Image source={require("../assets/logoSimbolo.png")} style={styles.logoImage} />
                     </Left>
+                    <Body>
+                      
+                    </Body>
                 </Header>
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
@@ -314,6 +318,8 @@ const styles = StyleSheet.create({
         width: width * 0.1,
         height: 50,
         marginTop: 10,
+        marginLeft:19,
+    
     },
     item:{
         backgroundColor: "#FFCDD2",
