@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Form,Item,Input,Icon, Right,Button,Picker,DatePicker,Content,Spinner} from "native-base";
-import { StyleSheet, Text,Dimensions} from "react-native";
+import { StyleSheet, Text,Dimensions,Image} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 //import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -72,7 +72,7 @@ import * as Font from "expo-font";
             return (
                 <Container style={styles.Fondo}  >
                     <Header  style={styles.header} >
-                     
+                      <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
                     </Header>
                      <LinearGradient 
                         colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
@@ -196,7 +196,14 @@ botonCategorias:{
     backgroundColor:"transparent",
     marginTop:30,
     width:"auto",
-}
+},
+logoImage: {
+  width: 180,
+  height: 60,
+  alignSelf: "center",
+  marginTop: 22,
+  marginBottom: 19
+},
  });
 
 export default AgregarGastos;

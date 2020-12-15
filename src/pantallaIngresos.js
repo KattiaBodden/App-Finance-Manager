@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {Container,View,Header,Item,Input,Icon,Fab,Card,List,ListItem, Left, Right, Body} from "native-base";
-import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
@@ -23,7 +23,7 @@ const pantallaIngresos= ({ navigation }) => {
        return (
             <Container style={styles.Fondo}  >
                 <Header  style={styles.header} >
-                 
+                    <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
                 </Header>
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
       
     },
     header: {
-        backgroundColor: '#31898F',
+        backgroundColor: '#3CCCD6',
     },
 
     h1:{
@@ -140,6 +140,14 @@ const styles = StyleSheet.create({
         fontSize:20,
         marginBottom: 20
     },
+
+    logoImage: {
+        width: 180,
+        height: 60,
+        alignSelf: "center",
+        marginTop: 22,
+        marginBottom: 19
+      },
  });
 
 export default pantallaIngresos;

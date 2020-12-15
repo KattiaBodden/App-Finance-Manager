@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState ,useContext} from "react";
 import {Container,View,Header,Item,Input,Icon, Right,Button,Content,Spinner} from "native-base";
-import { StyleSheet, Text,Dimensions} from "react-native";
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {ContextoIngresos} from "../src/context/ingresoContext"; 
@@ -59,7 +59,7 @@ import * as Font from "expo-font";
             return (
                 <Container style={styles.Fondo}  >
                     <Header  style={styles.header} >
-                     
+                    <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
                     </Header>
                      <LinearGradient 
                         colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
@@ -150,6 +150,13 @@ viewStyle:{
     width:350,
     height:500,
     alignSelf:"center"
+},
+logoImage: {
+  width: 180,
+  height: 60,
+  alignSelf: "center",
+  marginTop: 22,
+  marginBottom: 19
 },
 });
 
