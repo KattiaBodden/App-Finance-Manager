@@ -22,16 +22,15 @@ const pantallaGastos= ({ navigation }) => {
     }):null; 
    console.log(suma);
        return (
-            <Container style={styles.Fondo}  >
-                <Header  style={styles.header} >
-                    <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
-                </Header>
+            <Container style={styles.Fondo}>
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
                    start={{ x: 1, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
                    <View >
+                        <Image source={require("../assets/letras.png")} style={styles.logoImage} />
+               
                        <Text style={styles.h1}>Gastos</Text>
                        <View style={styles.divisor}/>
                        
@@ -56,7 +55,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: alimento.id });
                                         }}>
                                             <Left><Text>{alimento.descripcion}</Text></Left> 
-                                            <Body><Text> {alimento.monto}</Text></Body>  
+                                            <Body><Text> L.{alimento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
  
                                         </ListItem>
@@ -77,7 +76,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vivienda.id });
                                         }}>
                                             <Left><Text>{vivienda.descripcion}</Text></Left> 
-                                            <Body><Text> {vivienda.monto}</Text></Body>  
+                                            <Body><Text> L.{vivienda.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -99,7 +98,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: transporte.id });
                                         }}>
                                             <Left><Text>{transporte.descripcion}</Text></Left> 
-                                            <Body><Text> {transporte.monto}</Text></Body>  
+                                            <Body><Text> L.{transporte.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -120,7 +119,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: salud.id });
                                         }}>
                                             <Left><Text>{salud.descripcion}</Text></Left> 
-                                            <Body><Text> {salud.monto}</Text></Body>  
+                                            <Body><Text> L.{salud.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -142,7 +141,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: entretenimiento.id });
                                         }}>
                                             <Left><Text>{entretenimiento.descripcion}</Text></Left> 
-                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
+                                            <Body><Text> L.{entretenimiento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -164,7 +163,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vestuario.id });
                                         }}>
                                             <Left><Text>{vestuario.descripcion}</Text></Left> 
-                                            <Body><Text> {vestuario.monto}</Text></Body>  
+                                            <Body><Text> L.{vestuario.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -186,7 +185,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: educacion.id });
                                         }}>
                                             <Left><Text>{educacion.descripcion}</Text></Left> 
-                                            <Body><Text> {educacion.monto}</Text></Body>  
+                                            <Body><Text> L.{educacion.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
                                         </ListItem>
@@ -207,7 +206,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: otros.id });
                                         }}>
                                             <Left><Text>{otros.descripcion}</Text></Left> 
-                                            <Body><Text> {otros.monto}</Text></Body>  
+                                            <Body><Text> L.{otros.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -221,7 +220,7 @@ const pantallaGastos= ({ navigation }) => {
                                  
                             </ScrollView>
                             <View>
-                                <Text style={styles.textoTotal} >Total: {suma}</Text>
+                                <Text style={styles.textoTotal} >Total: L.{suma}</Text>
                             </View>
                         </Card>
                         <Fab
@@ -309,11 +308,11 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     logoImage: {
-        width: 180,
+        width: width * 0.85,
         height: 60,
         alignSelf: "center",
         marginTop: 22,
-        marginBottom: 19
+        marginLeft: 5
       },
  });
 

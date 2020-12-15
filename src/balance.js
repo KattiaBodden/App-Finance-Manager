@@ -1,6 +1,6 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 import {Container,View,Header,Form,Item,Input,Icon,DatePicker, Right,Button,Card} from "native-base";
-import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
+import { StyleSheet, Text,Dimensions, Image} from "react-native";
 import { NavigationContainer} from '@react-navigation/native';
 import { PieChart } from "react-native-chart-kit";
 import { ContextoGastos } from "../src/context/movimientosContext";
@@ -49,17 +49,18 @@ const balance = ({ navigation }) => {
   ];
        return (
             <Container style={styles.Fondo}  >
-                <Header  style={styles.header} >
-                 
-                </Header>
+      
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
                    start={{ x: 1, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
+                    <Image source={require("../assets/letras.png")} style={styles.logoImage} />
+               
                     <Text style={styles.h1}>Balance</Text>
                     <View style={styles.divisor}/>
                    <View style={styles.view}>
+
                        <PieChart
                             //doughnut={true}
                             data={data}
@@ -134,7 +135,13 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         marginTop: 15,
     },
-    
+    logoImage: {
+      width: width * 0.9,
+      height: 60,
+      alignSelf: "center",
+      marginTop: 25,
+      marginBottom: 10
+    },
  });
 
 export default balance;

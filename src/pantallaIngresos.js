@@ -21,16 +21,15 @@ const pantallaIngresos= ({ navigation }) => {
     }):null; 
 
        return (
-            <Container style={styles.Fondo}  >
-                <Header  style={styles.header} >
-                    <Image source={require("../assets/logo1.jpg")} style={styles.logoImage} />
-                </Header>
+            <Container style={styles.Fondo}>
                 <LinearGradient 
                    colors={[colors= '#AB2C2C','#9C4142','#866064','#78757A', '#62959C','#56A6AE','#48BBC4','#3CCCD6']} 
                    style={styles.LinearGradient}
                    start={{ x: 1, y: 1 }}
                    end={{ x: 1, y: 0 }}> 
                    <View >
+                        <Image source={require("../assets/letras.png")} style={styles.logoImage} />
+               
                        <Text style={styles.h1}>Ingresos</Text>
                        <View style={styles.divisor}/>
                        
@@ -142,11 +141,11 @@ const styles = StyleSheet.create({
     },
 
     logoImage: {
-        width: 180,
+        width: width * 0.85,
         height: 60,
         alignSelf: "center",
         marginTop: 22,
-        marginBottom: 19
+        marginLeft: 5
       },
  });
 

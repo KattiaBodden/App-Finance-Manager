@@ -6,7 +6,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import mainScreen from "./src/mainScreen"
 import pantallaIngresos from "./src/pantallaIngresos"
 import pantallaGastos from "./src/pantallaGastos"
-import movimientos from "./src/movimientos"
 import AgregarGastos from './src/AgregarGastos'
 import balance from './src/balance'
 import * as SplashScreen from "expo-splash-screen";
@@ -38,7 +37,6 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
       <Stack.Screen name="mainScreen" component={mainScreen} />
-      <Stack.Screen name="movimientos" component={movimientos} />
       <Stack.Screen name="agregarGastos" component={AgregarGastos} />
       <Stack.Screen name="pantallaIngresos" component={pantallaIngresos} />
       <Stack.Screen name="pantallaGastos" component={pantallaGastos} />
