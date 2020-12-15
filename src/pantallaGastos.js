@@ -39,9 +39,9 @@ const pantallaGastos= ({ navigation }) => {
                            <ScrollView>
                               <List>
                                     
-                                 {gastosAlimentacion ?
-                                    <ListItem itemDivider>
-                                        <Text>Alimentacion</Text>
+                                 {gastosAlimentacion  != ""  ?
+                                    <ListItem itemDivider style={styles.item} >
+                                        <Text style={styles.textItem}>Alimentacion</Text>
                                     </ListItem>
                                     :null
                                   }
@@ -56,16 +56,16 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: alimento.id });
                                         }}>
                                             <Left><Text>{alimento.descripcion}</Text></Left> 
-                                            <Body><Text> {alimento.monto}</Text></Body>  
+                                            <Body><Text>L. {alimento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
  
                                         </ListItem>
                                     ))
                                     : null}
 
-                                  {gastosVivienda ?
-                                    <ListItem itemDivider>
-                                        <Text>Vivienda</Text>
+                                  {gastosVivienda != "" ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text  style={styles.textItem}>Vivienda</Text>
                                     </ListItem>
                                   :null}  
                                  
@@ -77,7 +77,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vivienda.id });
                                         }}>
                                             <Left><Text>{vivienda.descripcion}</Text></Left> 
-                                            <Body><Text> {vivienda.monto}</Text></Body>  
+                                            <Body><Text>L. {vivienda.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -85,9 +85,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}
 
-                                {gastosTrasporte ? 
-                                    <ListItem itemDivider>
-                                        <Text>Trasporte</Text>
+                                {gastosTrasporte  != "" ? 
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text  style={styles.textItem}>Trasporte</Text>
                                     </ListItem>
                                     :null}
 
@@ -99,16 +99,16 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: transporte.id });
                                         }}>
                                             <Left><Text>{transporte.descripcion}</Text></Left> 
-                                            <Body><Text> {transporte.monto}</Text></Body>  
+                                            <Body><Text>L. {transporte.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
                                         </ListItem>
                                     ))
                                     : null} 
-                                {gastosSalud ?
-                                     <ListItem itemDivider>
-                                        <Text>Salud</Text>
+                                {gastosSalud  != ""  ?
+                                     <ListItem itemDivider style={styles.item}>
+                                        <Text  style={styles.textItem}>Salud</Text>
                                     </ListItem>
                                 :null}
                                
@@ -120,7 +120,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: salud.id });
                                         }}>
                                             <Left><Text>{salud.descripcion}</Text></Left> 
-                                            <Body><Text> {salud.monto}</Text></Body>  
+                                            <Body><Text>L. {salud.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -128,9 +128,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}  
 
-                                 {gastosEntretenimiento ?
-                                    <ListItem itemDivider>
-                                        <Text>Entretenimiento</Text>
+                                 {gastosEntretenimiento  != ""  ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text  style={styles.textItem}>Entretenimiento</Text>
                                     </ListItem>
                                  :null}
                                  
@@ -142,7 +142,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: entretenimiento.id });
                                         }}>
                                             <Left><Text>{entretenimiento.descripcion}</Text></Left> 
-                                            <Body><Text> {entretenimiento.monto}</Text></Body>  
+                                            <Body><Text>L. {entretenimiento.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -150,9 +150,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}    
 
-                                {gastosVestuario ?
-                                    <ListItem itemDivider>
-                                        <Text>Vestuario</Text>
+                                {gastosVestuario  != ""  ?
+                                    <ListItem itemDivider style={styles.item}>
+                                        <Text  style={styles.textItem}>Vestuario</Text>
                                     </ListItem>
                                 :null}
                                 
@@ -164,7 +164,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: vestuario.id });
                                         }}>
                                             <Left><Text>{vestuario.descripcion}</Text></Left> 
-                                            <Body><Text> {vestuario.monto}</Text></Body>  
+                                            <Body><Text>L. {vestuario.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -172,9 +172,9 @@ const pantallaGastos= ({ navigation }) => {
                                     ))
                                     : null}     
 
-                                    {gastosEducacion ?
-                                         <ListItem itemDivider>
-                                            <Text>Educacion</Text>
+                                    {gastosEducacion  != ""  ?
+                                         <ListItem itemDivider style={styles.item}>
+                                            <Text  style={styles.textItem}>Educacion</Text>
                                         </ListItem>
                                     :null}
                                  
@@ -186,16 +186,16 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: educacion.id });
                                         }}>
                                             <Left><Text>{educacion.descripcion}</Text></Left> 
-                                            <Body><Text> {educacion.monto}</Text></Body>  
+                                            <Body><Text>L. {educacion.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
                                         </ListItem>
                                     ))
                                     : null}         
 
-                                {gastosOtros ?
-                                <ListItem itemDivider>
-                                    <Text>Otros</Text>
+                                {gastosOtros  != ""  ?
+                                <ListItem itemDivider style={styles.item}>
+                                    <Text  style={styles.textItem}  >Otros</Text>
                                 </ListItem>
                                 :null}
                                 
@@ -207,7 +207,7 @@ const pantallaGastos= ({ navigation }) => {
                                             navigation.navigate("modificarGasto", { id: otros.id });
                                         }}>
                                             <Left><Text>{otros.descripcion}</Text></Left> 
-                                            <Body><Text> {otros.monto}</Text></Body>  
+                                            <Body><Text>L. {otros.monto}</Text></Body>  
                                             <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right> 
 
 
@@ -308,6 +308,20 @@ const styles = StyleSheet.create({
         textAlign:"center",
         fontSize:20
     },
+    textItem:{
+        alignSelf:"center",
+        fontWeight:"bold",
+        textAlign:"center",
+        color:"#236266",
+        fontSize:15
+
+
+    },
+    item:{
+        backgroundColor:"#FFCDD2",
+        justifyContent:"center",
+        textAlign:"center"
+    }
  });
 
 export default pantallaGastos;

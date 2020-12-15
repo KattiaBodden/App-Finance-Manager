@@ -84,12 +84,12 @@ export const GastosContextProvider = (props) => {
 
   const agregarGasto = async (descripcion,monto,idCategoria) => {
     await database.insertGastos(descripcion,monto,idCategoria, refreshGastos);
-    return refreshGastos();
+    return refreshGastos(),refreshGastosAlimentacion(),refreshGastosEducacion(),refreshGastosEntretenimiento(),refreshGastosOtros(),refreshGastosSalud(),refreshGastosTransporte(),refreshGastosVestuario(),refreshGastosVivienda();
   };
 
   const modificarGastos = async(descripcion,monto,id)   => {
     await database.updateGastos(descripcion,monto,id,refreshGastos)
-    return refreshGastos();
+    return refreshGastos(),refreshGastosAlimentacion(),refreshGastosEducacion(),refreshGastosEntretenimiento(),refreshGastosOtros(),refreshGastosSalud(),refreshGastosTransporte(),refreshGastosVestuario(),refreshGastosVivienda();
   }
 
   const getGastoId = (id) => {

@@ -61,6 +61,8 @@ import * as Font from "expo-font";
             }         
           };
 
+
+          
           if (!fontsLoaded)
           return (
             <Content contentContainerStyle={styles.content}>
