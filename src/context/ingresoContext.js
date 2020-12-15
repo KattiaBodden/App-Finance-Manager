@@ -6,6 +6,7 @@ export const IngresosContextProvider = (props) => {
 
     const { ingresos: initialIngresos, children } = props;
     const [ingresos, setIngresos] = useState(initialIngresos);
+    const [ingreso, setIngreso] = useState("");
 
     useEffect(() => {
         refreshIngresos();
@@ -19,10 +20,21 @@ export const IngresosContextProvider = (props) => {
         await database.insertIngresos(descripcion, monto, refreshIngresos);
         return refreshIngresos();
     };
+    const modificarIngreso = async(descripcion,monto,id)   => {
+        await database.updateIngreso(descripcion,monto,id,refreshIngresos)
+        return refreshIngresos();
+    }
+    
+    const getIngresoId = (id) => {
+        return database.getIngresoPorId(id, setIngreso);
+    }
 
     const contextoIngresosObject = {
         ingresos,
+        ingreso,
         agregarIngreso,
+        modificarIngreso,
+        getIngresoId,
       };
 
     return (

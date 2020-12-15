@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import {Container,View,Header,Item,Input,Icon,Fab,Card,List,ListItem, Left, Right, Body} from "native-base";
 import { StyleSheet, Text,Dimensions, FlatList} from "react-native";
-import { NavigationContainer} from '@react-navigation/native';
-
+import { MaterialIcons } from '@expo/vector-icons';
 //import backend from "../api/backend";
 //import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -41,10 +40,13 @@ const pantallaIngresos= ({ navigation }) => {
                               <List>
                                  {ingresos ? 
                                     ingresos.map((ingreso) => (
-                                        <ListItem key={ingreso.id.toString()}>
+                                        <ListItem key={ingreso.id.toString()} 
+                                         onPress={() => {      
+                                            navigation.navigate("modificarIngreso", { id: ingreso.id });
+                                        }}>
                                             <Left><Text>{ingreso.descripcion}</Text></Left>
                                             <Body><Text>L. {ingreso.monto} </Text></Body> 
-                                            <Right></Right>  
+                                            <Right><MaterialIcons name="keyboard-arrow-right" size={24} color="black" /></Right>   
                                         </ListItem>
                                     ))
                                     : null}

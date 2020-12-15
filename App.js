@@ -16,6 +16,7 @@ import modificarGasto from './src/modificarGasto';
 import {CategoriaContextProvider} from "./src/context/categoriasContext"
 import { IngresosContextProvider } from "./src/context/ingresoContext";
 import agregarIngreso from './src/agregarIngreso'
+import modificarIngreso from './src/modificarIngreso';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default function App() {
       <Stack.Screen name="balance" component={balance} />
       <Stack.Screen name="modificarGasto" component={modificarGasto} />
       <Stack.Screen name="agregarIngreso" component={agregarIngreso} />
+      <Stack.Screen name="modificarIngreso" component={modificarIngreso} />
     </Stack.Navigator>
       
   </NavigationContainer>  
